@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bee's Editing Services</title>
+    <style>
+        :root {
+            --dark-yellow: #E3A008;
+            --pastel-yellow: #FFED99;
+            --accent: #FFF5CC;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--dark-yellow);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            background-color: var(--pastel-yellow);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.2s;
+        }
+
+        .tab-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .content-box {
+            background-color: var(--pastel-yellow);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-section {
+            margin-bottom: 25px;
+        }
+
+        .portfolio-section h3 {
+            color: #5E4200;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+
+        .commission-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .commission-list li {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: var(--accent);
+            border-radius: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button" onclick="showContent('portfolio')">Editing Portfolio</button>
+            <button class="tab-button" onclick="showContent('commission')">Commission Info</button>
+        </div>
+
+        <!-- Portfolio Content -->
+        <div id="portfolio" class="content-box">
+            <div class="portfolio-section">
+                <h2>Hi, I'm Bee</h2>
+                <p>I've been editing for almost six years. I use Premiere Pro, and I'm available pretty much 24/7 (as long as I'm not busy with IRL or homework). Commission me via Discord @beemilkz or through my friend's server!</p>
+                <p>My editing style is versatile and can be tailored to your needs. Complex styles may cost more.</p>
+            </div>
+
+            <div class="portfolio-section">
+                <h3>Long-form Videos</h3>
+                <ul>
+                    <li>Agamatsu</li>
+                    <li>Deepwoken’s Hardest PvE Event</li>
+                    <li>DEEPWOKEN v TYPE SOUL</li>
+                    <!-- Add all other list items -->
+                </ul>
+            </div>
+
+            <!-- Add other portfolio sections following the same pattern -->
+        </div>
+
+        <!-- Commission Info Content -->
+        <div id="commission" class="content-box hidden">
+            <div class="portfolio-section">
+                <h2>Commission Information</h2>
+                
+                <h3>What do you offer?</h3>
+                <p>Video editing</p>
+
+                <h3>Payment</h3>
+                <ul class="commission-list">
+                    <li>PayPal only</li>
+                </ul>
+
+                <h3>Rates</h3>
+                <ul class="commission-list">
+                    <li>Short-form video: $5</li>
+                    <li>1-15 minute video: $15</li>
+                    <li>15+ minute video: $30</li>
+                    <li>Well-edited video: +$5</li>
+                </ul>
+
+                <h3>FAQ</h3>
+                <ul class="commission-list">
+                    <li><strong>Software:</strong> Premiere Pro</li>
+                    <li><strong>Experience:</strong> 5+ years editing</li>
+                    <li><strong>Pricing:</strong> Negotiable based on needs</li>
+                    <li><strong>Portfolio:</strong> <button class="tab-button" onclick="showContent('portfolio')">View Portfolio</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(contentId) {
+            document.getElementById('portfolio').classList.add('hidden');
+            document.getElementById('commission').classList.add('hidden');
+            document.getElementById(contentId).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
