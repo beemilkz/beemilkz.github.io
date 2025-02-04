@@ -6,14 +6,14 @@
     <title>Bee's Editing Services</title>
     <style>
         :root {
-            --dark-yellow: #FFD700; /* New golden yellow */
+            --dark-grey: #2D2D2D; /* New dark grey background */
             --pastel-yellow: #FFED99;
             --accent: #FFF5CC;
         }
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: var(--dark-yellow);
+            background-color: var(--dark-grey);
             margin: 0;
             padding: 20px;
             color: #333;
@@ -105,8 +105,8 @@
         <div id="portfolio" class="content-box">
             <div class="portfolio-section">
                 <h2>Hi, I'm Bee!</h2>
-                <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Commission me via Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy" target="_blank">friend's server!</a></p>
-                <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to your needs. Complex styles may <strong><u>may</u></strong> cost more.</p>
+                <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Commission me via Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy" target="_blank">friend's Discord server</a>, where you can commission me and others!</p>
+                <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to your needs. Complex styles <strong><u>may</u></strong> cost more.</p>
             </div>
 
             <!-- Add other portfolio sections here later -->
@@ -120,10 +120,9 @@
                 <h3>What do you offer?</h3>
                 <p>Video editing</p>
 
-                <h3>Payment</h3>
+                <h3>What payment methods do I accept?</h3>
                 <ul class="commission-list">
-                    <li>What payment methods do I accept?<br>
-                    <strong><u>PayPal only</u></strong></li>
+                    <li><strong><u>PayPal only</u></strong></li>
                 </ul>
 
                 <h3>Rates</h3>
@@ -153,22 +152,31 @@
     </div>
 
     <script>
-        let firstVisit = true;
+        let visitedTabs = {
+            portfolio: false,
+            commission: false
+        };
 
         function showContent(contentId) {
-            const portfolio = document.getElementById('portfolio');
-            const commission = document.getElementById('commission');
-            
-            if (firstVisit) {
-                portfolio.style.animation = 'fadeIn 0.5s ease-in';
-                commission.style.animation = 'fadeIn 0.5s ease-in';
-                firstVisit = false;
+            const elements = {
+                portfolio: document.getElementById('portfolio'),
+                commission: document.getElementById('commission')
+            };
+
+            if (!visitedTabs[contentId]) {
+                elements[contentId].style.animation = 'fadeIn 0.5s ease-in';
+                visitedTabs[contentId] = true;
             }
 
-            portfolio.classList.add('hidden');
-            commission.classList.add('hidden');
-            document.getElementById(contentId).classList.remove('hidden');
+            // Hide all content
+            Object.values(elements).forEach(el => el.classList.add('hidden'));
+            // Show selected content
+            elements[contentId].classList.remove('hidden');
         }
+
+        // Initial fade-in for first visible content
+        document.getElementById('portfolio').style.animation = 'fadeIn 0.5s ease-in';
+        visitedTabs.portfolio = true;
     </script>
 </body>
 </html>
