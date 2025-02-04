@@ -6,7 +6,7 @@
     <title>Bee's Editing Services</title>
     <style>
         :root {
-            --dark-yellow: #E3A008;
+            --dark-yellow: #FFD700; /* New golden yellow */
             --pastel-yellow: #FFED99;
             --accent: #FFF5CC;
         }
@@ -50,6 +50,12 @@
             padding: 25px;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .portfolio-section {
@@ -77,6 +83,15 @@
         .hidden {
             display: none;
         }
+
+        a {
+            color: #0066CC;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -89,22 +104,12 @@
         <!-- Portfolio Content -->
         <div id="portfolio" class="content-box">
             <div class="portfolio-section">
-                <h2>Hi, I'm Bee</h2>
-                <p>I've been editing for almost six years. I use Premiere Pro, and I'm available pretty much 24/7 (as long as I'm not busy with IRL or homework). Commission me via Discord @beemilkz or through my friend's server!</p>
-                <p>My editing style is versatile and can be tailored to your needs. Complex styles may cost more.</p>
+                <h2>Hi, I'm Bee!</h2>
+                <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Commission me via Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy" target="_blank">friend's server!</a></p>
+                <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to your needs. Complex styles may <strong><u>may</u></strong> cost more.</p>
             </div>
 
-            <div class="portfolio-section">
-                <h3>Long-form Videos</h3>
-                <ul>
-                    <li>Agamatsu</li>
-                    <li>Deepwoken’s Hardest PvE Event</li>
-                    <li>DEEPWOKEN v TYPE SOUL</li>
-                    <!-- Add all other list items -->
-                </ul>
-            </div>
-
-            <!-- Add other portfolio sections following the same pattern -->
+            <!-- Add other portfolio sections here later -->
         </div>
 
         <!-- Commission Info Content -->
@@ -117,7 +122,8 @@
 
                 <h3>Payment</h3>
                 <ul class="commission-list">
-                    <li>PayPal only</li>
+                    <li>What payment methods do I accept?<br>
+                    <strong><u>PayPal only</u></strong></li>
                 </ul>
 
                 <h3>Rates</h3>
@@ -130,19 +136,37 @@
 
                 <h3>FAQ</h3>
                 <ul class="commission-list">
-                    <li><strong>Software:</strong> Premiere Pro</li>
-                    <li><strong>Experience:</strong> 5+ years editing</li>
-                    <li><strong>Pricing:</strong> Negotiable based on needs</li>
-                    <li><strong>Portfolio:</strong> <button class="tab-button" onclick="showContent('portfolio')">View Portfolio</button></li>
+                    <li><strong>What do you edit with?</strong><br>
+                    Premiere Pro</li>
+                    
+                    <li><strong>How experienced are you?</strong><br>
+                    I’ve been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</li>
+                    
+                    <li><strong>Is your pricing negotiable?</strong><br>
+                    Yes, prices fluctuate based on what you want</li>
+                    
+                    <li><strong>Portfolio:</strong><br>
+                    <button class="tab-button" onclick="showContent('portfolio')">View Portfolio</button></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <script>
+        let firstVisit = true;
+
         function showContent(contentId) {
-            document.getElementById('portfolio').classList.add('hidden');
-            document.getElementById('commission').classList.add('hidden');
+            const portfolio = document.getElementById('portfolio');
+            const commission = document.getElementById('commission');
+            
+            if (firstVisit) {
+                portfolio.style.animation = 'fadeIn 0.5s ease-in';
+                commission.style.animation = 'fadeIn 0.5s ease-in';
+                firstVisit = false;
+            }
+
+            portfolio.classList.add('hidden');
+            commission.classList.add('hidden');
             document.getElementById(contentId).classList.remove('hidden');
         }
     </script>
