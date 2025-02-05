@@ -2,7 +2,9 @@
 <html>
 <head>
     <script>
-        sessionStorage.redirect = location.href.split('/404.html')[1];
+        if(sessionStorage) {
+            sessionStorage.redirect = location.href;
+        }
         location.replace('/');
     </script>
 </head>
