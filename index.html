@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
-    (function(){
-        if(sessionStorage.redirect) {
-            const redirect = sessionStorage.redirect;
-            delete sessionStorage.redirect;
-            window.history.replaceState({}, document.title, '/');
-            window.location.href = redirect;
-        }
-    })();
-</script>
+    <script>
+        // Redirect handling (MUST BE FIRST IN HEAD)
+        (function(){
+            if(sessionStorage.redirect) {
+                const redirect = sessionStorage.redirect;
+                delete sessionStorage.redirect;
+                window.history.replaceState({}, document.title, '/');
+                window.location.href = redirect;
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bee's Editing Services</title>
@@ -74,39 +75,75 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Existing styles remain the same */
+        a {
+            color: #0066CC;
+            text-decoration: none;
+        }
 
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="tabs">
-            <button class="tab-button" onclick="showContent('welcome', '/')">Welcome!</button>
-            <button class="tab-button" onclick="showContent('commission', '/commission-info')">Commission Info</button>
-            <button id="portfolioTab" class="tab-button hidden-tab" onclick="showContent('portfolio', '/editing-portfolio')">Editing Portfolio</button>
+            <button class="tab-button" onclick="showContent('welcome')">Welcome!</button>
+            <button class="tab-button" onclick="showContent('commission')">Commission Info</button>
+            <button id="portfolioTab" class="tab-button hidden-tab" onclick="showContent('portfolio')">Editing Portfolio</button>
         </div>
 
         <!-- Welcome Content -->
         <div id="welcome" class="content-box">
-            <!-- Content remains the same -->
+            <div class="portfolio-section">
+                <h2>Hi, I'm Bee!</h2>
+                <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong>, or join my <a href="http://discord.gg/vRRCMH3KGy" target="_blank">friend's Discord server</a>, where you can commission me and others!</p>
+                <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time-consuming or complex styles <strong><u>may</u></strong> cost more.</p>
+            </div>
         </div>
 
         <!-- Commission Info Content -->
         <div id="commission" class="content-box hidden">
-            <!-- Content remains the same -->
-        </div>
-
-        <!-- Portfolio Content (Hidden until unlocked) -->
-        <div id="portfolio" class="content-box hidden">
             <div class="portfolio-section">
-                <h2>Editing Portfolio</h2>
-                <h3>Long-form Videos</h3>
-                <ul>
-                    <li>Agamatsu</li>
-                    <li>Deepwoken’s Hardest PvE Event</li>
-                    <!-- Add all other portfolio items -->
+                <h2>Commission Information</h2>
+                
+                <h3>What do you offer?</h3>
+                <p>Video editing</p>
+
+                <h3>What payment methods do I accept?</h3>
+                <ul class="commission-list">
+                    <li><strong><u>PayPal only</u></strong></li>
+                </ul>
+
+                <h3>Rates</h3>
+                <ul class="commission-list">
+                    <li>Short-form video: $5</li>
+                    <li>1-15 minute video: $15</li>
+                    <li>15+ minute video: $30</li>
+                    <li>Well-edited video: +$5</li>
+                </ul>
+
+                <h3>FAQ</h3>
+                <ul class="commission-list">
+                    <li><strong>What do you edit with?</strong><br>
+                    Premiere Pro</li>
+                    
+                    <li><strong>How experienced are you?</strong><br>
+                    I’ve been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</li>
+                    
+                    <li><strong>Is your pricing negotiable?</strong><br>
+                    Yes, prices fluctuate based on what you want</li>
+                    
+                    <li><strong>Portfolio:</strong><br>
+                    <button class="tab-button" onclick="unlockPortfolio()">View Portfolio</button></li>
                 </ul>
             </div>
+        </div>
+
+        <!-- Portfolio Content -->
+        <div id="portfolio" class="content-box hidden">
+            <h2>Editing Portfolio</h2>
+            <p>Coming soon! Check back later for my full portfolio.</p>
         </div>
     </div>
 
@@ -117,51 +154,44 @@
             portfolio: false
         };
 
-        // Initialize history state
-        window.history.replaceState({ tab: 'welcome' }, '', '/');
-
-        function showContent(contentId, path) {
-            // Update URL
-            window.history.pushState({ tab: contentId }, '', path);
-
-            // Handle tab visibility
-            const portfolioTab = document.getElementById('portfolioTab');
-            if (contentId === 'commission') {
-                portfolioTab.classList.remove('hidden-tab');
-                setTimeout(() => {
-                    portfolioTab.style.opacity = '1';
-                }, 10);
-            }
-
+        function showContent(contentId) {
+            // Hide all content
+            document.querySelectorAll('.content-box').forEach(el => el.classList.add('hidden'));
+            
+            // Show selected content
+            const target = document.getElementById(contentId);
+            target.classList.remove('hidden');
+            
             // Handle animations
-            const elements = ['welcome', 'commission', 'portfolio'];
-            elements.forEach(id => {
-                const el = document.getElementById(id);
-                if (id === contentId) {
-                    if (!visited[id]) {
-                        el.style.animation = 'fadeIn 0.5s ease-in';
-                        visited[id] = true;
-                    }
-                    el.classList.remove('hidden');
-                } else {
-                    el.classList.add('hidden');
-                }
-            });
+            if (!visited[contentId]) {
+                target.style.animation = 'fadeIn 0.5s ease-in';
+                visited[contentId] = true;
+            }
+            
+            // Update URL
+            const path = contentId === 'welcome' ? '/' : `/${contentId}`;
+            window.history.pushState({}, '', path);
+        }
+
+        function unlockPortfolio() {
+            const portfolioTab = document.getElementById('portfolioTab');
+            portfolioTab.classList.remove('hidden-tab');
+            portfolioTab.style.display = 'inline-block';
+            setTimeout(() => {
+                portfolioTab.style.opacity = '1';
+                showContent('portfolio');
+            }, 10);
         }
 
         // Handle browser navigation
-        window.addEventListener('popstate', (event) => {
-            if (event.state) {
-                showContent(event.state.tab, 
-                    event.state.tab === 'welcome' ? '/' : 
-                    event.state.tab === 'commission' ? '/commission-info' : 
-                    '/editing-portfolio');
-            }
+        window.addEventListener('popstate', () => {
+            const path = window.location.pathname;
+            const contentId = path === '/' ? 'welcome' : path.slice(1);
+            showContent(contentId);
         });
 
         // Initial load
-        document.getElementById('welcome').style.animation = 'fadeIn 0.5s ease-in';
-        visited.welcome = true;
+        showContent('welcome');
     </script>
 </body>
 </html>
