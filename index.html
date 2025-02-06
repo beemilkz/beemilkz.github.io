@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>beemilkz's website</title>
     <style>
-	.win-logo {
+		.win-logo {
     position: fixed;
     bottom: 20px;
     left: 20px;
@@ -57,6 +57,11 @@
             padding: 25px;
             margin: 20px;
             max-width: 800px;
+            display: none; /* Default state hidden */
+        }
+
+        .glass-panel.active {
+            display: block; /* Make visible when active */
         }
 
         .aero-tabs {
@@ -90,16 +95,6 @@
                 rgba(255,255,255,0.8) 0%, 
                 rgba(255,255,255,0.5) 100%);
             transform: translateY(-2px);
-        }
-
-        .hidden-tab {
-            display: none;
-            animation: aeroReveal 0.6s ease-out forwards;
-        }
-
-        @keyframes aeroReveal {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         a {
@@ -142,8 +137,8 @@
     </div>
 
     <!-- Welcome Tab -->
-    <div id="welcome" class="glass-panel">
-        <h1>Hello, I'm Bee</h1>
+    <div id="welcome" class="glass-panel active">
+        <h1>hello, i'm bee.</h1>
         <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others. :-)</p>
         
         <div class="glass-panel" style="margin-top: 20px; background: rgba(255, 236, 179, 0.3);">
@@ -152,7 +147,7 @@
     </div>
 
     <!-- Commission Info Tab -->
-    <div id="commission" class="glass-panel hidden-tab">
+    <div id="commission" class="glass-panel">
         <h2>Commission Information</h2>
         
         <h3>What do you offer?</h3>
@@ -191,7 +186,7 @@
     </div>
 
     <!-- Portfolio Tab -->
-    <div id="portfolio" class="glass-panel hidden-tab">
+    <div id="portfolio" class="glass-panel">
         <h2>Editing Portfolio</h2>
         <p>Coming soon! Check back later for my full portfolio.</p>
     </div>
@@ -204,24 +199,18 @@
         };
 
         function showTab(tabId) {
-            // Hide all content
+            // Hide all tabs
             document.querySelectorAll('.glass-panel').forEach(panel => {
-                panel.classList.add('hidden-tab');
-                panel.style.display = 'none';
+                panel.classList.remove('active');
             });
-            
-            // Show selected tab
+
+            // Show the selected tab
             const tab = document.getElementById(tabId);
-            tab.classList.remove('hidden-tab');
-            tab.style.display = 'block';
-            
-            // Handle animation
-            if (!visitedTabs[tabId]) {
-                tab.style.animation = 'aeroReveal 0.6s';
-                visitedTabs[tabId] = true;
+            if (tab) {
+                tab.classList.add('active');
             }
-            
-            // Update URL
+
+            // Update URL path
             const path = tabId === 'welcome' ? '/' : `/${tabId}`;
             window.history.pushState({}, '', path);
         }
