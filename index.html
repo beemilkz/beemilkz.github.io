@@ -15,42 +15,161 @@
     <title>beemilkz's website</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
-        /* Add to existing CSS */
+        :root {
+            --aero-blue: #7FD8FF;
+            --vista-glass: rgba(255, 255, 255, 0.3);
+            --win-border: #94E0FF;
+            --active-glow: #4CAF50;
+        }
+
         body, html {
             height: 100%;
             margin: 0;
-        }
-        
-        body {
             background: url('assets/bg.jpg') no-repeat center center fixed;
             background-size: cover;
-            min-height: 100vh;
+            font-family: Verdana, sans-serif;
+            color: #002D40;
         }
 
-        .tab-button.active {
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
-            border-color: #4CAF50 !important;
+        h1, h2, h3 {
+            font-family: Helvetica, sans-serif;
+            font-weight: normal;
+            margin: 0 0 15px 0;
+            text-transform: lowercase;
+        }
+
+        .glass-panel {
+            background: var(--vista-glass);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--win-border);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin: 20px;
+            max-width: 800px;
+        }
+
+        .aero-tabs {
+            display: flex;
+            gap: 5px;
+            padding: 15px;
             background: linear-gradient(to bottom, 
-                rgba(255,255,255,0.8) 0%, 
-                rgba(255,255,255,0.6) 100%);
+                rgba(255,255,255,0.4) 0%, 
+                rgba(255,255,255,0.2) 100%);
+            border-radius: 6px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .tab-button {
+            padding: 12px 25px;
+            border: 1px solid #94E0FF;
+            border-radius: 4px;
+            background: linear-gradient(to bottom, 
+                rgba(255,255,255,0.6) 0%, 
+                rgba(255,255,255,0.3) 100%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Helvetica, sans-serif;
+            color: #003366;
+            text-transform: lowercase;
         }
 
         .tab-button:hover {
             text-decoration: underline;
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            border-color: var(--active-glow) !important;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        u {
+            text-decoration: underline;
+        }
+
+        a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- Remove Windows logo line -->
-    
     <nav class="aero-tabs">
         <button class="tab-button" onclick="showTab('welcome')">welcome</button>
         <button class="tab-button" onclick="showTab('commission')">commission</button>
         <button class="tab-button" onclick="showTab('portfolio')">portfolio</button>
     </nav>
 
+    <!-- Welcome Tab -->
+    <div id="welcome" class="glass-panel">
+        <h1>hello, i'm bee</h1>
+        <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others.</p>
+        
+        <div class="glass-panel" style="margin-top:20px;background:rgba(255,236,179,0.3);">
+            <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time-consuming or complex styles <strong><u>may</u></strong> cost more.</p>
+        </div>
+    </div>
+
+    <!-- Commission Tab -->
+    <div id="commission" class="glass-panel hidden">
+        <h2>commission information</h2>
+        
+        <h3>what do you offer?</h3>
+        <p>Video editing</p>
+
+        <h3>payment</h3>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;">
+            <p>what payment methods do I accept?<br>
+            <strong><u>PayPal only</u></strong></p>
+        </div>
+
+        <h3>rates</h3>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;">
+            <p>short-form video: $5<br>
+            1-15 minute video: $15<br>
+            15+ minute video: $30<br>
+            well-edited video: +$5</p>
+        </div>
+
+        <h3>faq</h3>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;">
+            <p><strong>what do you edit with?</strong><br>
+            Premiere Pro</p>
+            
+            <p><strong>how experienced are you?</strong><br>
+            I’ve been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</p>
+            
+            <p><strong>is your pricing negotiable?</strong><br>
+            Yes, prices fluctuate based on what you want</p>
+        </div>
+    </div>
+
+    <!-- Portfolio Tab -->
+    <div id="portfolio" class="glass-panel hidden">
+        <h2>editing portfolio</h2>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;text-align:center;">
+            <p>portfolio coming soon<br>
+            (check back later)</p>
+        </div>
+    </div>
+
     <script>
-        // Modified showTab function
         function showTab(tabId) {
             // Update active button
             document.querySelectorAll('.tab-button').forEach(btn => {
@@ -61,23 +180,32 @@
             // Update title
             document.title = `${tabId} - beemilkz's website`;
 
-            // Update URL hash
+            // Update content visibility
+            document.querySelectorAll('.glass-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Update URL
             window.location.hash = `#!${tabId}`;
         }
 
         // Handle initial load
-        function loadTabFromHash() {
+        function loadTab() {
             const tabId = window.location.hash.replace('#!', '') || 'welcome';
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
             document.title = `${tabId} - beemilkz's website`;
             document.querySelectorAll('.glass-panel').forEach(panel => {
                 panel.classList.add('hidden');
             });
             document.getElementById(tabId).classList.remove('hidden');
-            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
         }
 
-        window.addEventListener('hashchange', loadTabFromHash);
-        window.addEventListener('load', loadTabFromHash);
+        window.addEventListener('hashchange', loadTab);
+        window.addEventListener('load', loadTab);
     </script>
 </body>
 </html>
