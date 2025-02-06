@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Keep the redirect script here -->
     <script>
         (function(){
             if(sessionStorage.redirect) {
@@ -24,32 +23,19 @@
 
         body {
             margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(160deg, #00B4CC 0%, #0077B6 100%);
+            height: 100vh;
+            background: url('assets/bg.jpg') fixed;
+            background-size: cover;
             font-family: Verdana, sans-serif;
             color: #002D40;
-            overflow-x: hidden;
+            overflow-y: scroll;
         }
 
         h1, h2, h3 {
-            font-family: Helvetica, Arial, sans-serif;
-            margin-top: 0;
-        }
-
-        /* Windows Logo Styles */
-        .win-logo {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 60px; /* Increased size */
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-            transition: all 0.3s ease;
-        }
-
-        .win-logo:hover {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.7)); /* Glow effect */
-            cursor: pointer;
+            font-family: Helvetica, sans-serif;
+            font-weight: normal;
+            margin: 0 0 15px 0;
+            text-transform: lowercase;
         }
 
         .glass-panel {
@@ -71,8 +57,10 @@
                 rgba(255,255,255,0.4) 0%, 
                 rgba(255,255,255,0.2) 100%);
             border-radius: 6px;
-            margin: 20px;
-            max-width: 800px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(5px);
         }
 
         .tab-button {
@@ -84,9 +72,9 @@
                 rgba(255,255,255,0.3) 100%);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: Helvetica, Arial, sans-serif;
+            font-family: Helvetica, sans-serif;
             color: #003366;
-            text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+            text-transform: lowercase;
         }
 
         .tab-button:hover {
@@ -96,120 +84,122 @@
             transform: translateY(-2px);
         }
 
-        .hidden {
-            display: none;
+        strong {
+            font-weight: bold;
+        }
+
+        u {
+            text-decoration: underline;
         }
 
         a {
-            color: #0066CC;
+            color: #2196F3;
             text-decoration: none;
-            border-bottom: 1px dotted currentColor;
         }
 
         a:hover {
             text-decoration: underline;
         }
 
-        strong {
-            font-weight: bold;
-            color: #005580;
+        .hidden {
+            display: none;
+        }
+
+        .win-logo {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 40px;
+            opacity: 0.7;
         }
     </style>
 </head>
 <body>
-    <img src="windows-logo.png" class="win-logo" alt="Windows Logo" onclick="showTab('welcome')">
+    <img src="assets/vista-logo.png" class="win-logo" alt="Decoration">
 
-    <div class="aero-tabs">
-        <button class="tab-button" onclick="showTab('welcome')">Welcome</button>
-        <button class="tab-button" onclick="showTab('commission')">Commission</button>
-        <button class="tab-button" onclick="showTab('portfolio')">Portfolio</button>
-    </div>
+    <nav class="aero-tabs">
+        <button class="tab-button" onclick="showTab('welcome')">welcome</button>
+        <button class="tab-button" onclick="showTab('commission')">commission</button>
+        <button class="tab-button" onclick="showTab('portfolio')">portfolio</button>
+    </nav>
 
     <!-- Welcome Tab -->
     <div id="welcome" class="glass-panel">
-        <h1>hello, i'm bee.</h1>
-        <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others. :-)</p>
+        <h1>hello, i'm bee</h1>
+        <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others.</p>
         
-        <div class="glass-panel" style="margin-top: 20px; background: rgba(255, 236, 179, 0.3);">
+        <div class="glass-panel" style="margin-top:20px;background:rgba(255,236,179,0.3);">
             <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time-consuming or complex styles <strong><u>may</u></strong> cost more.</p>
         </div>
     </div>
 
-    <!-- Commission Info Tab -->
+    <!-- Commission Tab -->
     <div id="commission" class="glass-panel hidden">
-        <h2>Commission Information</h2>
+        <h2>commission information</h2>
         
-        <h3>What do you offer?</h3>
+        <h3>what do you offer?</h3>
         <p>Video editing</p>
 
-        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
-            <h3>Payment</h3>
-            <p>What payment methods do I accept?<br>
+        <h3>payment</h3>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;">
+            <p>what payment methods do I accept?<br>
             <strong><u>PayPal only</u></strong></p>
         </div>
 
-        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2); margin-top: 20px;">
-            <h3>Rates</h3>
-            <ul>
-                <li>Short-form video: $3</li>
-                <li>1-15 minute video: $15</li>
-                <li>15+ minute video: $30</li>
-                <li>Well-edited video: +$5</li>
-            </ul>
+        <h3>rates</h3>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;">
+            <p>short-form video: $5<br>
+            1-15 minute video: $15<br>
+            15+ minute video: $30<br>
+            well-edited video: +$5</p>
         </div>
 
-        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2); margin-top: 20px;">
-            <h3>FAQ</h3>
-            <p><strong>What do you edit with?</strong><br>
+        <h3>faq</h3>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;">
+            <p><strong>what do you edit with?</strong><br>
             Premiere Pro</p>
             
-            <p><strong>How experienced are you?</strong><br>
+            <p><strong>how experienced are you?</strong><br>
             I’ve been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</p>
             
-            <p><strong>Is your pricing negotiable?</strong><br>
+            <p><strong>is your pricing negotiable?</strong><br>
             Yes, prices fluctuate based on what you want</p>
         </div>
     </div>
 
     <!-- Portfolio Tab -->
     <div id="portfolio" class="glass-panel hidden">
-        <h2>Editing Portfolio</h2>
-        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
-            <h3>Long-form Videos</h3>
-            <ul>
-                <li>Agamatsu</li>
-                <li>Deepwoken’s Hardest PvE Event</li>
-                <li>DEEPWOKEN v TYPE SOUL</li>
-                <!-- Add other portfolio items here -->
-            </ul>
+        <h2>editing portfolio</h2>
+        <div class="glass-panel" style="margin:15px 0;padding:15px;text-align:center;">
+            <p>portfolio coming soon<br>
+            (check back later)</p>
         </div>
     </div>
 
     <script>
         function showTab(tabId) {
-            // Hide all content
+            // Hide all tabs
             document.querySelectorAll('.glass-panel').forEach(panel => {
                 panel.classList.add('hidden');
             });
             
             // Show selected tab
-            const tab = document.getElementById(tabId);
-            tab.classList.remove('hidden');
+            document.getElementById(tabId).classList.remove('hidden');
             
             // Update URL
             const path = tabId === 'welcome' ? '/' : `/${tabId}`;
             window.history.pushState({}, '', path);
         }
 
+        // Handle initial load
+        const currentTab = window.location.pathname.slice(1) || 'welcome';
+        showTab(currentTab);
+
         // Handle browser navigation
         window.addEventListener('popstate', () => {
-            const path = window.location.pathname;
-            const tabId = path === '/' ? 'welcome' : path.slice(1);
+            const tabId = window.location.pathname.slice(1) || 'welcome';
             showTab(tabId);
         });
-
-        // Initial load
-        showTab('welcome');
     </script>
 </body>
 </html>
