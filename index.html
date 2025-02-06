@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Keep the redirect script here -->
     <script>
         (function(){
             if(sessionStorage.redirect) {
@@ -15,19 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>beemilkz's website</title>
     <style>
-		.win-logo {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    width: 40px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-    transition: transform 0.3s ease;
-}
-
-.win-logo:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
         :root {
             --aero-blue: #7FD8FF;
             --vista-glass: rgba(255, 255, 255, 0.3);
@@ -48,6 +36,22 @@
             margin-top: 0;
         }
 
+        /* Windows Logo Styles */
+        .win-logo {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px; /* Increased size */
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transition: all 0.3s ease;
+        }
+
+        .win-logo:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.7)); /* Glow effect */
+            cursor: pointer;
+        }
+
         .glass-panel {
             background: var(--vista-glass);
             backdrop-filter: blur(10px);
@@ -57,11 +61,6 @@
             padding: 25px;
             margin: 20px;
             max-width: 800px;
-            display: none; /* Default state hidden */
-        }
-
-        .glass-panel.active {
-            display: block; /* Make visible when active */
         }
 
         .aero-tabs {
@@ -97,6 +96,10 @@
             transform: translateY(-2px);
         }
 
+        .hidden {
+            display: none;
+        }
+
         a {
             color: #0066CC;
             text-decoration: none;
@@ -111,33 +114,19 @@
             font-weight: bold;
             color: #005580;
         }
-
-        .vista-button {
-            padding: 8px 16px;
-            border: 1px solid #4CAF50;
-            border-radius: 3px;
-            background: linear-gradient(to bottom, #8BC34A 0%, #4CAF50 100%);
-            color: white;
-            font-family: Helvetica, Arial, sans-serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .vista-button:hover {
-            background: linear-gradient(to bottom, #4CAF50 0%, #8BC34A 100%);
-        }
     </style>
 </head>
 <body>
-<img src="windows-logo.png" class="win-logo" alt="Windows Logo" onclick="showTab('welcome')">
+    <img src="windows-logo.png" class="win-logo" alt="Windows Logo" onclick="showTab('welcome')">
+
     <div class="aero-tabs">
         <button class="tab-button" onclick="showTab('welcome')">Welcome</button>
         <button class="tab-button" onclick="showTab('commission')">Commission</button>
-        <button id="portfolioTab" class="tab-button hidden-tab" onclick="showTab('portfolio')">Portfolio</button>
+        <button class="tab-button" onclick="showTab('portfolio')">Portfolio</button>
     </div>
 
     <!-- Welcome Tab -->
-    <div id="welcome" class="glass-panel active">
+    <div id="welcome" class="glass-panel">
         <h1>hello, i'm bee.</h1>
         <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others. :-)</p>
         
@@ -147,30 +136,30 @@
     </div>
 
     <!-- Commission Info Tab -->
-    <div id="commission" class="glass-panel">
+    <div id="commission" class="glass-panel hidden">
         <h2>Commission Information</h2>
         
         <h3>What do you offer?</h3>
         <p>Video editing</p>
 
-        <h3>Payment</h3>
         <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
+            <h3>Payment</h3>
             <p>What payment methods do I accept?<br>
             <strong><u>PayPal only</u></strong></p>
         </div>
 
-        <h3>Rates</h3>
-        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
+        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2); margin-top: 20px;">
+            <h3>Rates</h3>
             <ul>
-                <li>Short-form video: $5</li>
+                <li>Short-form video: $3</li>
                 <li>1-15 minute video: $15</li>
                 <li>15+ minute video: $30</li>
                 <li>Well-edited video: +$5</li>
             </ul>
         </div>
 
-        <h3>FAQ</h3>
-        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
+        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2); margin-top: 20px;">
+            <h3>FAQ</h3>
             <p><strong>What do you edit with?</strong><br>
             Premiere Pro</p>
             
@@ -179,47 +168,37 @@
             
             <p><strong>Is your pricing negotiable?</strong><br>
             Yes, prices fluctuate based on what you want</p>
-            
-            <p><strong>Portfolio:</strong><br>
-            <button class="vista-button" onclick="unlockPortfolio()">View Portfolio</button></p>
         </div>
     </div>
 
     <!-- Portfolio Tab -->
-    <div id="portfolio" class="glass-panel">
+    <div id="portfolio" class="glass-panel hidden">
         <h2>Editing Portfolio</h2>
-        <p>Coming soon! Check back later for my full portfolio.</p>
+        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
+            <h3>Long-form Videos</h3>
+            <ul>
+                <li>Agamatsu</li>
+                <li>Deepwoken’s Hardest PvE Event</li>
+                <li>DEEPWOKEN v TYPE SOUL</li>
+                <!-- Add other portfolio items here -->
+            </ul>
+        </div>
     </div>
 
     <script>
-        let visitedTabs = {
-            welcome: true,
-            commission: false,
-            portfolio: false
-        };
-
         function showTab(tabId) {
-            // Hide all tabs
+            // Hide all content
             document.querySelectorAll('.glass-panel').forEach(panel => {
-                panel.classList.remove('active');
+                panel.classList.add('hidden');
             });
-
-            // Show the selected tab
+            
+            // Show selected tab
             const tab = document.getElementById(tabId);
-            if (tab) {
-                tab.classList.add('active');
-            }
-
-            // Update URL path
+            tab.classList.remove('hidden');
+            
+            // Update URL
             const path = tabId === 'welcome' ? '/' : `/${tabId}`;
             window.history.pushState({}, '', path);
-        }
-
-        function unlockPortfolio() {
-            const portfolioTab = document.getElementById('portfolioTab');
-            portfolioTab.classList.remove('hidden-tab');
-            portfolioTab.style.display = 'inline-block';
-            showTab('portfolio');
         }
 
         // Handle browser navigation
