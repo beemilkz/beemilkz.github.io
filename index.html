@@ -33,7 +33,7 @@
 
         h1, h2, h3 {
             font-family: Helvetica, sans-serif;
-            font-weight: normal;
+            font-weight: bold;
             margin: 0 0 15px 0;
             text-transform: lowercase;
         }
@@ -84,7 +84,7 @@
 
         .tab-button.active {
             border-color: var(--active-glow) !important;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
         }
 
         strong {
@@ -196,12 +196,14 @@
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            const activeBtn = document.querySelector(`[onclick="showTab('${tabId}')"]`);
+            if(activeBtn) activeBtn.classList.add('active');
             document.title = `${tabId} - beemilkz's website`;
             document.querySelectorAll('.glass-panel').forEach(panel => {
                 panel.classList.add('hidden');
             });
-            document.getElementById(tabId).classList.remove('hidden');
+            const activePanel = document.getElementById(tabId);
+            if(activePanel) activePanel.classList.remove('hidden');
         }
 
         window.addEventListener('hashchange', loadTab);
