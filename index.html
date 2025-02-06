@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Previous head content remains the same -->
     <script>
-        // Single redirect handler (prevents loops)
         (function(){
-            const validPaths = ['/', '/commission-info', '/editing-portfolio'];
-            const currentPath = window.location.pathname;
-            
-            if(!validPaths.includes(currentPath) && sessionStorage.redirect !== 'handled') {
-                sessionStorage.redirect = currentPath;
-                window.location.replace('/');
-            }
-            else if(sessionStorage.redirect) {
-                const redirectPath = sessionStorage.redirect;
-                sessionStorage.removeItem('redirect');
-                if(validPaths.includes(redirectPath)) {
-                    window.history.replaceState({}, '', redirectPath);
-                }
+            if(sessionStorage.redirect) {
+                const redirect = sessionStorage.redirect;
+                delete sessionStorage.redirect;
+                window.history.replaceState({}, document.title, '/');
+                window.location.href = redirect;
             }
         })();
     </script>
@@ -25,33 +15,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bee's Editing Services</title>
     <style>
-        /* Previous CSS remains the same */
+        :root {
+            --dark-grey: #2D2D2D;
+            --pastel-yellow: #FFED99;
+            --accent: #FFF5CC;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--dark-grey);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .tab-button {
+            background-color: var(--pastel-yellow);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.hidden-tab {
+            display: none;
+            opacity: 0;
+        }
+
+        .tab-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .content-box {
+            background-color: var(--pastel-yellow);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        a {
+            color: #0066CC;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="tabs">
-            <button class="tab-button" data-target="welcome">Welcome!</button>
-            <button class="tab-button" data-target="commission">Commission Info</button>
-            <button id="portfolioTab" class="tab-button hidden-tab" data-target="portfolio">Editing Portfolio</button>
+            <button class="tab-button" onclick="showTab('welcome')">Welcome!</button>
+            <button class="tab-button" onclick="showTab('commission')">Commission Info</button>
+            <button id="portfolioTab" class="tab-button hidden-tab" onclick="showTab('portfolio')">Editing Portfolio</button>
         </div>
 
         <!-- Welcome Content -->
         <div id="welcome" class="content-box fade-in">
-            <!-- Welcome content remains the same -->
+            <div class="portfolio-section">
+                <h2>Hi, I'm Bee!</h2>
+                <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy" target="_blank">friend's Discord server</a>, where you can commission me and others!</p>
+                <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time-consuming or complex styles <strong><u>may</u></strong> cost more.</p>
+            </div>
         </div>
 
         <!-- Commission Info Content -->
-        <div id="commission" class="content-box hidden-content">
+        <div id="commission" class="content-box hidden">
             <div class="portfolio-section">
                 <h2>Commission Information</h2>
                 
                 <h3>What do you offer?</h3>
                 <p>Video editing</p>
 
-                <h3>What payment methods do I accept?</h3>
+                <h3>Payment</h3>
                 <ul class="commission-list">
-                    <li><strong><u>PayPal only</u></strong></li>
+                    <li>What payment methods do I accept?<br>
+                    <strong><u>PayPal only</u></strong></li>
                 </ul>
 
                 <h3>Rates</h3>
@@ -80,23 +144,59 @@
         </div>
 
         <!-- Portfolio Content -->
-        <div id="portfolio" class="content-box hidden-content">
-            <h2>Editing Portfolio</h2>
+        <div id="portfolio" class="content-box hidden">
+            <h2>Editing Portfolio (Placeholder)</h2>
             <p>Coming soon! Check back later for my full portfolio.</p>
         </div>
     </div>
 
     <script>
-        // Previous JavaScript remains the same with these updates:
+        let visitedTabs = {
+            welcome: true,
+            commission: false,
+            portfolio: false
+        };
 
-        function unlockPortfolio() {
-            portfolioTabButton.classList.remove('hidden-tab');
-            sessionStorage.setItem('portfolioUnlocked', 'true');
-            showTab('portfolio');
-            history.pushState({ tab: 'portfolio' }, '', '/editing-portfolio');
+        function showTab(tabId) {
+            // Hide all content
+            document.querySelectorAll('.content-box').forEach(box => {
+                box.classList.add('hidden');
+                box.classList.remove('fade-in');
+            });
+            
+            // Show selected tab
+            const tab = document.getElementById(tabId);
+            tab.classList.remove('hidden');
+            
+            // Handle animation
+            if (!visitedTabs[tabId]) {
+                tab.classList.add('fade-in');
+                visitedTabs[tabId] = true;
+            }
+            
+            // Update URL
+            const path = tabId === 'welcome' ? '/' : `/${tabId}`;
+            window.history.pushState({}, '', path);
         }
 
-        // Rest of the JavaScript remains the same
+        function unlockPortfolio() {
+            const portfolioTab = document.getElementById('portfolioTab');
+            portfolioTab.classList.remove('hidden-tab');
+            portfolioTab.style.display = 'inline-block';
+            setTimeout(() => {
+                portfolioTab.style.opacity = '1';
+            }, 10);
+        }
+
+        // Handle browser back/forward
+        window.addEventListener('popstate', () => {
+            const path = window.location.pathname;
+            const tabId = path === '/' ? 'welcome' : path.slice(1);
+            showTab(tabId);
+        });
+
+        // Initial load
+        showTab('welcome');
     </script>
 </body>
 </html>
