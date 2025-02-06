@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <script>
-        // Capture the invalid path and redirect
-        sessionStorage.redirect = decodeURIComponent(
-            location.pathname + location.search
-        );
-        location.replace('/');
-    </script>
-</head>
-<body>
-    Redirecting to homepage...
-</body>
-</html>
+<script>
+    sessionStorage.redirect = location.href.split('/404.html')[1];
+    location.replace('/#!' + location.pathname.split('/').pop());
+</script>
