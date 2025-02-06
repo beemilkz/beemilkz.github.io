@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // Capture the invalid path and redirect
+        sessionStorage.redirect = decodeURIComponent(
+            location.pathname + location.search
+        );
+        location.replace('/');
+    </script>
+</head>
+<body>
+    Redirecting to homepage...
+</body>
+</html>

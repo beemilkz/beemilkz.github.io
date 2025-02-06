@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        (function(){
+            if(sessionStorage.redirect) {
+                const redirect = sessionStorage.redirect;
+                delete sessionStorage.redirect;
+                window.history.replaceState({}, document.title, '/');
+                window.location.href = redirect;
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bee's Editing Suite</title>
+    <title>beemilkz's website</title>
     <style>
+	.win-logo {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 40px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
+}
+
+.win-logo:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
         :root {
             --aero-blue: #7FD8FF;
             --vista-glass: rgba(255, 255, 255, 0.3);
@@ -13,12 +36,16 @@
 
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(160deg, #00B4CC 0%, #0077B6 100%);
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-family: Verdana, sans-serif;
             color: #002D40;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: Helvetica, Arial, sans-serif;
+            margin-top: 0;
         }
 
         .glass-panel {
@@ -29,6 +56,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             padding: 25px;
             margin: 20px;
+            max-width: 800px;
         }
 
         .aero-tabs {
@@ -39,7 +67,8 @@
                 rgba(255,255,255,0.4) 0%, 
                 rgba(255,255,255,0.2) 100%);
             border-radius: 6px;
-            margin-bottom: 20px;
+            margin: 20px;
+            max-width: 800px;
         }
 
         .tab-button {
@@ -51,7 +80,7 @@
                 rgba(255,255,255,0.3) 100%);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: bold;
+            font-family: Helvetica, Arial, sans-serif;
             color: #003366;
             text-shadow: 0 1px 1px rgba(255,255,255,0.4);
         }
@@ -61,32 +90,10 @@
                 rgba(255,255,255,0.8) 0%, 
                 rgba(255,255,255,0.5) 100%);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 180, 204, 0.3);
-        }
-
-        .vista-button {
-            padding: 10px 20px;
-            border: 1px solid #4CAF50;
-            border-radius: 3px;
-            background: linear-gradient(to bottom, 
-                #8BC34A 0%, 
-                #4CAF50 100%);
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .vista-button:hover {
-            background: linear-gradient(to bottom, 
-                #4CAF50 0%, 
-                #8BC34A 100%);
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
         }
 
         .hidden-tab {
             display: none;
-            opacity: 0;
             animation: aeroReveal 0.6s ease-out forwards;
         }
 
@@ -95,46 +102,146 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .win-logo {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 40px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        a {
+            color: #0066CC;
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        strong {
+            font-weight: bold;
+            color: #005580;
+        }
+
+        .vista-button {
+            padding: 8px 16px;
+            border: 1px solid #4CAF50;
+            border-radius: 3px;
+            background: linear-gradient(to bottom, #8BC34A 0%, #4CAF50 100%);
+            color: white;
+            font-family: Helvetica, Arial, sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vista-button:hover {
+            background: linear-gradient(to bottom, #4CAF50 0%, #8BC34A 100%);
         }
     </style>
 </head>
 <body>
-    <img src="windows-logo.png" class="win-logo" alt="Windows Logo">
-
+<img src="windows-logo.png" class="win-logo" alt="Windows Logo" onclick="showTab('welcome')">
     <div class="aero-tabs">
         <button class="tab-button" onclick="showTab('welcome')">Welcome</button>
         <button class="tab-button" onclick="showTab('commission')">Commission</button>
         <button id="portfolioTab" class="tab-button hidden-tab" onclick="showTab('portfolio')">Portfolio</button>
     </div>
 
+    <!-- Welcome Tab -->
     <div id="welcome" class="glass-panel">
-        <h1 style="color: #FFA726; text-shadow: 0 2px 2px rgba(0,0,0,0.1);">🖥️ Hello, I'm Bee!</h1>
-        <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy" style="color: #2196F3; text-decoration: underline;">friend's Discord server</a>, where you can commission me and others. :-)</p>
+        <h1>Hello, I'm Bee</h1>
+        <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others. :-)</p>
         
         <div class="glass-panel" style="margin-top: 20px; background: rgba(255, 236, 179, 0.3);">
             <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time-consuming or complex styles <strong><u>may</u></strong> cost more.</p>
         </div>
     </div>
 
-    <!-- Commission Info Tab Content -->
+    <!-- Commission Info Tab -->
     <div id="commission" class="glass-panel hidden-tab">
-        <!-- Commission content here -->
+        <h2>Commission Information</h2>
+        
+        <h3>What do you offer?</h3>
+        <p>Video editing</p>
+
+        <h3>Payment</h3>
+        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
+            <p>What payment methods do I accept?<br>
+            <strong><u>PayPal only</u></strong></p>
+        </div>
+
+        <h3>Rates</h3>
+        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
+            <ul>
+                <li>Short-form video: $5</li>
+                <li>1-15 minute video: $15</li>
+                <li>15+ minute video: $30</li>
+                <li>Well-edited video: +$5</li>
+            </ul>
+        </div>
+
+        <h3>FAQ</h3>
+        <div class="glass-panel" style="background: rgba(255, 255, 255, 0.2);">
+            <p><strong>What do you edit with?</strong><br>
+            Premiere Pro</p>
+            
+            <p><strong>How experienced are you?</strong><br>
+            I’ve been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</p>
+            
+            <p><strong>Is your pricing negotiable?</strong><br>
+            Yes, prices fluctuate based on what you want</p>
+            
+            <p><strong>Portfolio:</strong><br>
+            <button class="vista-button" onclick="unlockPortfolio()">View Portfolio</button></p>
+        </div>
     </div>
 
-    <!-- Portfolio Tab Content -->
+    <!-- Portfolio Tab -->
     <div id="portfolio" class="glass-panel hidden-tab">
-        <!-- Portfolio content here -->
+        <h2>Editing Portfolio</h2>
+        <p>Coming soon! Check back later for my full portfolio.</p>
     </div>
 
     <script>
-        // JavaScript functionality remains similar to previous versions
-        // but with added visual effects for the Vista/Aero experience
+        let visitedTabs = {
+            welcome: true,
+            commission: false,
+            portfolio: false
+        };
+
+        function showTab(tabId) {
+            // Hide all content
+            document.querySelectorAll('.glass-panel').forEach(panel => {
+                panel.classList.add('hidden-tab');
+                panel.style.display = 'none';
+            });
+            
+            // Show selected tab
+            const tab = document.getElementById(tabId);
+            tab.classList.remove('hidden-tab');
+            tab.style.display = 'block';
+            
+            // Handle animation
+            if (!visitedTabs[tabId]) {
+                tab.style.animation = 'aeroReveal 0.6s';
+                visitedTabs[tabId] = true;
+            }
+            
+            // Update URL
+            const path = tabId === 'welcome' ? '/' : `/${tabId}`;
+            window.history.pushState({}, '', path);
+        }
+
+        function unlockPortfolio() {
+            const portfolioTab = document.getElementById('portfolioTab');
+            portfolioTab.classList.remove('hidden-tab');
+            portfolioTab.style.display = 'inline-block';
+            showTab('portfolio');
+        }
+
+        // Handle browser navigation
+        window.addEventListener('popstate', () => {
+            const path = window.location.pathname;
+            const tabId = path === '/' ? 'welcome' : path.slice(1);
+            showTab(tabId);
+        });
+
+        // Initial load
+        showTab('welcome');
     </script>
 </body>
 </html>
