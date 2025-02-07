@@ -149,9 +149,9 @@
 </head>
 <body>
     <nav class="aero-tabs">
-        <button class="tab-button" onclick="showTab('welcome')">welcome</button>
-        <button class="tab-button" onclick="showTab('commission')">commission</button>
-        <button class="tab-button" onclick="showTab('portfolio')">portfolio</button>
+        <button class="tab-button" onclick="showTab(event, 'welcome')">welcome</button>
+        <button class="tab-button" onclick="showTab(event, 'commission')">commission</button>
+        <button class="tab-button" onclick="showTab(event, 'portfolio')">portfolio</button>
     </nav>
 
     <!-- Welcome Tab -->
@@ -238,23 +238,24 @@
     <!-- Portfolio Tab -->
     <div id="portfolio" class="glass-panel hidden">
         <h2>editing portfolio</h2>
-        <div class="inner-panel" style="text-align:center;">
-            <p>portfolio coming soon<br>
-            (check back later)</p>
-        </div>
+        <!-- This container will be filled dynamically by JavaScript -->
+        <div id="portfolio-content"></div>
     </div>
 
     <script>
-        function showTab(tabId) {
+        // -------------------------
+        // Tab Switching Code
+        // -------------------------
+        function showTab(event, tabName) {
             // Hide all panels
             document.querySelectorAll('.glass-panel').forEach(panel => {
-                if (panel.id) {  // Only hide panels with IDs (tab content)
+                if(panel.id) {  // Only hide panels with IDs (tab content)
                     panel.classList.add('hidden');
                 }
             });
             
             // Show selected panel
-            const selectedPanel = document.getElementById(tabId);
+            const selectedPanel = document.getElementById(tabName);
             if (selectedPanel) {
                 selectedPanel.classList.remove('hidden');
             }
@@ -266,14 +267,28 @@
             event.currentTarget.classList.add('active');
             
             // Update title and URL
-            document.title = `${tabId} - beemilkz's website`;
-            window.location.hash = `#!${tabId}`;
+            document.title = `${tabName} - beemilkz's website`;
+            // If switching to a top-level tab, update the hash accordingly
+            window.location.hash = `#!${tabName}`;
+            
+            // If the portfolio tab is shown, load its dynamic content.
+            if(tabName === "portfolio") {
+                loadPortfolio();
+            }
         }
 
-        // Handle initial load
+        // -------------------------
+        // Initial Load Handler
+        // -------------------------
         function loadTab() {
-            const hash = window.location.hash.replace('#!', '');
-            const tabId = hash || 'welcome';
+            let hash = window.location.hash.replace('#!', '');
+            let tabId = hash;
+            // If the hash begins with "portfolio", show the portfolio panel.
+            if(tabId.startsWith("portfolio")) {
+                tabId = "portfolio";
+            } else if(tabId === "") {
+                tabId = "welcome";
+            }
             
             // Hide all panels
             document.querySelectorAll('.glass-panel').forEach(panel => {
@@ -291,17 +306,193 @@
             // Update active button
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.getAttribute('onclick').includes(tabId)) {
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
                     btn.classList.add('active');
                 }
             });
 
             // Update title
             document.title = `${tabId} - beemilkz's website`;
+
+            // If portfolio tab is active, load its internal routing
+            if(tabId === "portfolio") {
+                loadPortfolio();
+            }
         }
 
         window.addEventListener('hashchange', loadTab);
         window.addEventListener('load', loadTab);
+
+        // -------------------------
+        // Portfolio Page Functions
+        // -------------------------
+
+        // Renders the main portfolio menu (four category buttons)
+        function renderPortfolioMainMenu() {
+            const container = document.getElementById('portfolio-content');
+            container.innerHTML = ""; // clear previous content
+
+            // Create a navigation menu using the same .aero-tabs styling
+            const menuDiv = document.createElement("div");
+            menuDiv.className = "aero-tabs";
+
+            // Define the main portfolio categories.
+            const buttons = [
+                { token: "long-form", label: "Long-form Videos" },
+                { token: "short-form", label: "Short-form Videos" },
+                { token: "short-form-highlights", label: "Short-form Highlights" },
+                { token: "long-form-highlights", label: "Long-form Highlights" }
+            ];
+
+            buttons.forEach(btn => {
+                const button = document.createElement("button");
+                button.className = "tab-button";
+                button.textContent = btn.label.toLowerCase();
+                button.onclick = function() {
+                    // Change the hash to include the portfolio route and the chosen token.
+                    window.location.hash = "#!portfolio/" + btn.token;
+                };
+                menuDiv.appendChild(button);
+            });
+            container.appendChild(menuDiv);
+
+            // A simple message to prompt the user.
+            const message = document.createElement("div");
+            message.innerHTML = "<p>Select a portfolio category above.</p>";
+            container.appendChild(message);
+        }
+
+        // Renders the long‑form videos page with sub‑navigation.
+        function renderLongFormPage(activeSub) {
+            const container = document.getElementById('portfolio-content');
+            container.innerHTML = "";
+
+            // Back button to return to the main portfolio menu.
+            const backBtn = document.createElement("button");
+            backBtn.className = "tab-button";
+            backBtn.textContent = "back";
+            backBtn.onclick = function() {
+                window.location.hash = "#!portfolio";
+            };
+            container.appendChild(backBtn);
+
+            // Create sub‑navigation for long‑form videos.
+            const subNavDiv = document.createElement("div");
+            subNavDiv.className = "aero-tabs";
+            const subPages = [
+                { token: "agamatsu", label: "Agamatsu" },
+                { token: "main-channel", label: "Main Channel" },
+                { token: "miscellaneous", label: "Miscellaneous" }
+            ];
+            subPages.forEach(sp => {
+                const button = document.createElement("button");
+                button.className = "tab-button";
+                button.textContent = sp.label.toLowerCase();
+                if (sp.token === activeSub) {
+                    button.classList.add("active");
+                }
+                button.onclick = function() {
+                    window.location.hash = "#!portfolio/" + sp.token;
+                };
+                subNavDiv.appendChild(button);
+            });
+            container.appendChild(subNavDiv);
+
+            // Embed area for the selected sub‑section.
+            const embedDiv = document.createElement("div");
+            embedDiv.className = "inner-panel";
+
+            if (activeSub === "agamatsu") {
+                embedDiv.innerHTML = `
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Fwza4adbSDE?si=oqopQI8ux8eGNoji" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/X1SHAuDIFGM?si=3XXzQ-a2K0-SREsa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vCutAZ1iGk4?si=Des_Np1vWa7WmGai" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/1JNCtdiFLDg?si=zmwJBesihCxtO1Md" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/iK99anrvVuY?si=zSeSmtFUkWyq9u4p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wN7Eo9VBaAM?si=n8eS-sjFmQrXKf3v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/S_rEf2qA_l0?si=Py7HdbC17vr8ibX2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                `;
+            } else if (activeSub === "main-channel") {
+                embedDiv.innerHTML = `
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5-fik6sC7sI?si=eCn6Av0QoL0m4nvx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/U1W4uF_HINU?si=7Yko53D9pVPIfKrf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/upApoQcIpBE?si=5zT3emEIxgJlh24o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                `;
+            } else if (activeSub === "miscellaneous") {
+                embedDiv.innerHTML = `
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nJUG5jGCyRw?si=CekyxQ0r2vJBg5kZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/qq5vnp_5f-A?si=a9NMJFklfpWCvCtO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/kdSjZSZ2Ly4?si=yIgecniqANpWIafE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                `;
+            } else {
+                embedDiv.innerHTML = `<p>No content available for this section.</p>`;
+            }
+
+            container.appendChild(embedDiv);
+        }
+
+        // Renders pages that have no sub‑navigation (direct embeds).
+        function renderPortfolioPage(pageToken, pageLabel) {
+            const container = document.getElementById('portfolio-content');
+            container.innerHTML = "";
+
+            // Back button to return to the main portfolio menu.
+            const backBtn = document.createElement("button");
+            backBtn.className = "tab-button";
+            backBtn.textContent = "back";
+            backBtn.onclick = function() {
+                window.location.hash = "#!portfolio";
+            };
+            container.appendChild(backBtn);
+
+            // Heading for the page.
+            const heading = document.createElement("h3");
+            heading.textContent = pageLabel.toLowerCase();
+            container.appendChild(heading);
+
+            // Embed area – replace with your YouTube embeds if available.
+            const embedDiv = document.createElement("div");
+            embedDiv.className = "inner-panel";
+            embedDiv.innerHTML = `<p>Insert YouTube embeds for <strong>${pageLabel}</strong> here.</p>`;
+            container.appendChild(embedDiv);
+        }
+
+        // Main portfolio router: parses the URL hash (after "portfolio") and loads content.
+        function loadPortfolio() {
+            // The hash might be something like "portfolio", "portfolio/long-form", "portfolio/agamatsu", etc.
+            let fullHash = window.location.hash.replace('#!', ''); // e.g., "portfolio/agamatsu"
+            const parts = fullHash.split('/');
+            
+            // If no sub‑route is provided, show the main portfolio menu.
+            if (parts.length === 1 || parts[1] === "") {
+                renderPortfolioMainMenu();
+                return;
+            }
+
+            // The second part is our route token.
+            const subRoute = parts[1];
+
+            // For long‑form videos, we have sub‑categories.
+            const longFormSubs = ["agamatsu", "main-channel", "miscellaneous"];
+            if (subRoute === "long-form" || longFormSubs.includes(subRoute)) {
+                // If the token is "long-form" (i.e. no sub‑section specified) default to "agamatsu"
+                const activeSub = (subRoute === "long-form") ? "agamatsu" : subRoute;
+                renderLongFormPage(activeSub);
+            }
+            // For pages with no sub‑navigation.
+            else if (subRoute === "short-form" || subRoute === "short-form-highlights" || subRoute === "long-form-highlights") {
+                const mapping = {
+                    "short-form": "Short-form Videos",
+                    "short-form-highlights": "Short-form Highlights",
+                    "long-form-highlights": "Long-form Highlights"
+                };
+                renderPortfolioPage(subRoute, mapping[subRoute]);
+            }
+            // If the route isn’t recognized, fall back to the main portfolio menu.
+            else {
+                renderPortfolioMainMenu();
+            }
+        }
     </script>
 </body>
 </html>
