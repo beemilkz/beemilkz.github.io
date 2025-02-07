@@ -283,7 +283,6 @@
       
       // Update title and URL
       document.title = `${tabName} - beemilkz's website`;
-      // If switching to a top‑level tab, update the hash accordingly
       window.location.hash = `#!${tabName}`;
       
       // If the portfolio tab is shown, load its dynamic content.
@@ -298,27 +297,23 @@
     function loadTab() {
       let hash = window.location.hash.replace('#!', '');
       let tabId = hash;
-      // If the hash begins with "portfolio", show the portfolio panel.
       if(tabId.startsWith("portfolio")) {
         tabId = "portfolio";
       } else if(tabId === "") {
         tabId = "welcome";
       }
       
-      // Hide all panels
       document.querySelectorAll('.glass-panel').forEach(panel => {
         if (panel.id) {
           panel.classList.add('hidden');
         }
       });
       
-      // Show selected panel
       const selectedPanel = document.getElementById(tabId);
       if (selectedPanel) {
         selectedPanel.classList.remove('hidden');
       }
 
-      // Update active button
       document.querySelectorAll('.tab-button').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
@@ -326,10 +321,8 @@
         }
       });
 
-      // Update title
       document.title = `${tabId} - beemilkz's website`;
 
-      // If portfolio tab is active, load its internal routing
       if(tabId === "portfolio") {
         loadPortfolio();
       }
@@ -345,13 +338,11 @@
     // Renders the main portfolio menu (four category buttons)
     function renderPortfolioMainMenu() {
       const container = document.getElementById('portfolio-content');
-      container.innerHTML = ""; // clear previous content
+      container.innerHTML = "";
 
-      // Create a navigation menu using the same .aero-tabs styling
       const menuDiv = document.createElement("div");
       menuDiv.className = "aero-tabs";
 
-      // Define the main portfolio categories.
       const buttons = [
         { token: "long-form", label: "Long-form Videos" },
         { token: "short-form", label: "Short-form Videos" },
@@ -364,14 +355,12 @@
         button.className = "tab-button";
         button.textContent = btn.label.toLowerCase();
         button.onclick = function() {
-          // Change the hash to include the portfolio route and the chosen token.
           window.location.hash = "#!portfolio/" + btn.token;
         };
         menuDiv.appendChild(button);
       });
       container.appendChild(menuDiv);
 
-      // A simple message to prompt the user.
       const message = document.createElement("div");
       message.innerHTML = "<p>Select a portfolio category above.</p>";
       container.appendChild(message);
@@ -382,7 +371,6 @@
       const container = document.getElementById('portfolio-content');
       container.innerHTML = "";
 
-      // Back button to return to the main portfolio menu.
       const backBtn = document.createElement("button");
       backBtn.className = "tab-button";
       backBtn.textContent = "back";
@@ -391,7 +379,6 @@
       };
       container.appendChild(backBtn);
 
-      // Create sub‑navigation for long‑form videos.
       const subNavDiv = document.createElement("div");
       subNavDiv.className = "aero-tabs";
       const subPages = [
@@ -413,7 +400,6 @@
       });
       container.appendChild(subNavDiv);
 
-      // Embed area for the selected sub‑section.
       const embedDiv = document.createElement("div");
       embedDiv.className = "inner-panel";
 
@@ -448,7 +434,6 @@
       } else {
         embedDiv.innerHTML = `<p>No content available for this section.</p>`;
       }
-
       container.appendChild(embedDiv);
     }
 
@@ -457,7 +442,6 @@
       const container = document.getElementById('portfolio-content');
       container.innerHTML = "";
 
-      // Back button to return to the main portfolio menu.
       const backBtn = document.createElement("button");
       backBtn.className = "tab-button";
       backBtn.textContent = "back";
@@ -466,12 +450,10 @@
       };
       container.appendChild(backBtn);
 
-      // Heading for the page.
       const heading = document.createElement("h3");
       heading.textContent = pageLabel.toLowerCase();
       container.appendChild(heading);
 
-      // Embed area.
       const embedDiv = document.createElement("div");
       embedDiv.className = "inner-panel";
 
@@ -515,12 +497,69 @@
               allowfullscreen></iframe>
           </div>
         `;
-        // Re-run TikTok embed script after dynamically inserting the blockquote.
         var tiktokScript = document.createElement("script");
         tiktokScript.src = "https://www.tiktok.com/embed.js";
         tiktokScript.async = true;
         embedDiv.appendChild(tiktokScript);
-      } else {
+      }
+      else if (pageToken === "short-form-highlights") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <!-- TikTok Highlight 1 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7459894059948068104" data-video-id="7459894059948068104" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>CHAT ITS NEVER WORTH IT. LOVE YOURSELF. roblox robloxfyp deepwokentiktok deepwoken</p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7459894178290699009?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 2 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7426200257903496456" data-video-id="7426200257903496456" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>The HEALER BUILD Is Crazy... <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="robloxfyp" target="_blank" href="https://www.tiktok.com/tag/robloxfyp?refer=embed">#robloxfyp</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="robloxtiktok" target="_blank" href="https://www.tiktok.com/tag/robloxtiktok?refer=embed">#robloxtiktok</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7426200344868178704?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 3 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7356601397103561992" data-video-id="7356601397103561992" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>I got DOXXED??? <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="deepwokentiktok" target="_blank" href="https://www.tiktok.com/tag/deepwokentiktok?refer=embed">#deepwokentiktok</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7356601574334024449?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 4 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7348821218801339668" data-video-id="7348821218801339668" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>What's wrong with blud's camera... <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="deepwokentiktok" target="_blank" href="https://www.tiktok.com/tag/deepwokentiktok?refer=embed">#deepwokentiktok</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7348821291192142593?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 5 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7343425583319141633" data-video-id="7343425583319141633" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>AGAMATSU AS A BARD? NEW BARD OATH? <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="roguelineage" target="_blank" href="https://www.tiktok.com/tag/roguelineage?refer=embed">#roguelineage</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7343425665963772674?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- YouTube Embed -->
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/BSpxORRvl9k"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        `;
+        var tiktokScript = document.createElement("script");
+        tiktokScript.src = "https://www.tiktok.com/embed.js";
+        tiktokScript.async = true;
+        embedDiv.appendChild(tiktokScript);
+      }
+      else {
         embedDiv.innerHTML = `<p>Insert YouTube embeds for <strong>${pageLabel}</strong> here.</p>`;
       }
       container.appendChild(embedDiv);
@@ -528,27 +567,21 @@
 
     // Main portfolio router: parses the URL hash (after "portfolio") and loads content.
     function loadPortfolio() {
-      // The hash might be something like "portfolio", "portfolio/long-form", "portfolio/agamatsu", etc.
-      let fullHash = window.location.hash.replace('#!', ''); // e.g., "portfolio/agamatsu"
+      let fullHash = window.location.hash.replace('#!', '');
       const parts = fullHash.split('/');
       
-      // If no sub‑route is provided, show the main portfolio menu.
       if (parts.length === 1 || parts[1] === "") {
         renderPortfolioMainMenu();
         return;
       }
 
-      // The second part is our route token.
       const subRoute = parts[1];
 
-      // For long‑form videos, we have sub‑categories.
       const longFormSubs = ["agamatsu", "main-channel", "miscellaneous"];
       if (subRoute === "long-form" || longFormSubs.includes(subRoute)) {
-        // If the token is "long-form" (i.e. no sub‑section specified) default to "agamatsu"
         const activeSub = (subRoute === "long-form") ? "agamatsu" : subRoute;
         renderLongFormPage(activeSub);
       }
-      // For pages with no sub‑navigation.
       else if (subRoute === "short-form" || subRoute === "short-form-highlights" || subRoute === "long-form-highlights") {
         const mapping = {
           "short-form": "Short-form Videos",
@@ -557,7 +590,6 @@
         };
         renderPortfolioPage(subRoute, mapping[subRoute]);
       }
-      // If the route isn’t recognized, fall back to the main portfolio menu.
       else {
         renderPortfolioMainMenu();
       }
