@@ -160,11 +160,11 @@
       margin: 0 auto;
       max-width: 100%;
     }
-    /* Ensure TikTok embeds resize on narrow screens */
+    /* Ensure TikTok embeds don't overflow on mobile */
     @media (max-width: 600px) {
-      blockquote.tiktok-embed {
-         max-width: 100% !important;
-         min-width: auto !important;
+      .embed-container blockquote.tiktok-embed {
+        max-width: 100% !important;
+        min-width: 0 !important;
       }
     }
   </style>
@@ -181,6 +181,7 @@
   <div id="welcome" class="glass-panel">
     <h1>hello, i'm bee</h1>
     <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others.</p>
+    
     <div class="inner-panel">
       <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time‑consuming or complex styles <strong><u>may</u></strong> cost more.</p>
     </div>
@@ -189,12 +190,15 @@
   <!-- Commission Tab -->
   <div id="commission" class="glass-panel hidden">
     <h2>commission information</h2>
+    
     <h3>what do you offer?</h3>
     <p>Video editing</p>
+
     <h3>payment</h3>
     <div class="inner-panel">
       <p>Paypal and Wise</p>
     </div>
+
     <h3>rates</h3>
     <div class="inner-panel">
       <table class="rates-table">
@@ -204,14 +208,43 @@
         <tr><td>Well‑edited video</td><td>+$5</td></tr>
       </table>
     </div>
+
     <h3>faq</h3>
     <div class="inner-panel">
-      <!-- FAQ items (omitted for brevity – use your existing content) -->
       <div class="faq-item">
         <div class="faq-question">What do you edit with?</div>
         <div class="faq-answer">Premiere Pro</div>
       </div>
-      <!-- ... other FAQ items ... -->
+      <div class="faq-item">
+        <div class="faq-question">How experienced are you?</div>
+        <div class="faq-answer">I've been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is your pricing negotiable?</div>
+        <div class="faq-answer">Yes, prices fluctuate based on what you want</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do you make short‑form content?</div>
+        <div class="faq-answer">Yes, all kinds</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How long does it take you to edit a video?</div>
+        <div class="faq-answer">It depends on the complexity and length of the video. Short‑form videos can take anywhere from a couple of hours to a day, while longer or heavily edited projects may take a few days to a week.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do you offer revisions?</div>
+        <div class="faq-answer">Yes, I will revise your video until you are happy :-)</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What's the difference between a standard edit and a well‑edited video?</div>
+        <div class="faq-answer">
+          A standard edit is <a href="https://www.youtube.com/watch?v=Fwza4adbSDE">this</a>, while a well‑edited video is <a href="https://www.youtube.com/watch?v=U1W4uF_HINU">this</a> or <a href="https://www.youtube.com/watch?v=5-fik6sC7sI">this</a>.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How do you handle music in videos?</div>
+        <div class="faq-answer">I can either use royalty‑free music or music provided by you. If you're looking for something specific, just let me know, and we can work it in.</div>
+      </div>
       <div class="faq-item">
         <div class="faq-question">Did your house really get destroyed by Hurricane Milton?</div>
         <div class="faq-answer">No</div>
@@ -222,14 +255,15 @@
   <!-- Portfolio Tab -->
   <div id="portfolio" class="glass-panel hidden">
     <h2>editing portfolio</h2>
-    <!-- This container will be filled dynamically by JavaScript -->
     <div id="portfolio-content"></div>
   </div>
 
   <!-- About Me Tab -->
   <div id="about" class="glass-panel hidden">
     <h2>about me</h2>
-    <p>This is a placeholder for about me. More information coming soon!</p>
+    <div class="inner-panel">
+      <p>Placeholder content about me. This section will eventually include more details about my background, interests, and creative journey.</p>
+    </div>
   </div>
 
   <script>
@@ -242,16 +276,20 @@
           panel.classList.add('hidden');
         }
       });
+      
       const selectedPanel = document.getElementById(tabName);
       if (selectedPanel) {
         selectedPanel.classList.remove('hidden');
       }
+
       document.querySelectorAll('.tab-button').forEach(btn => {
         btn.classList.remove('active');
       });
       event.currentTarget.classList.add('active');
+      
       document.title = `${tabName} - beemilkz's website`;
       window.location.hash = `#!${tabName}`;
+      
       if(tabName === "portfolio") {
         loadPortfolio();
       }
@@ -268,26 +306,32 @@
       } else if(tabId === "") {
         tabId = "welcome";
       }
+      
       document.querySelectorAll('.glass-panel').forEach(panel => {
         if (panel.id) {
           panel.classList.add('hidden');
         }
       });
+      
       const selectedPanel = document.getElementById(tabId);
       if (selectedPanel) {
         selectedPanel.classList.remove('hidden');
       }
+
       document.querySelectorAll('.tab-button').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
           btn.classList.add('active');
         }
       });
+
       document.title = `${tabId} - beemilkz's website`;
+
       if(tabId === "portfolio") {
         loadPortfolio();
       }
     }
+
     window.addEventListener('hashchange', loadTab);
     window.addEventListener('load', loadTab);
 
@@ -297,14 +341,17 @@
     function renderPortfolioMainMenu() {
       const container = document.getElementById('portfolio-content');
       container.innerHTML = "";
+
       const menuDiv = document.createElement("div");
       menuDiv.className = "aero-tabs";
+
       const buttons = [
         { token: "long-form", label: "Long-form Videos" },
         { token: "short-form", label: "Short-form Videos" },
         { token: "short-form-highlights", label: "Short-form Highlights" },
         { token: "long-form-highlights", label: "Long-form Highlights" }
       ];
+
       buttons.forEach(btn => {
         const button = document.createElement("button");
         button.className = "tab-button";
@@ -315,6 +362,7 @@
         menuDiv.appendChild(button);
       });
       container.appendChild(menuDiv);
+
       const message = document.createElement("div");
       message.innerHTML = "<p>Select a portfolio category above.</p>";
       container.appendChild(message);
@@ -323,11 +371,15 @@
     function renderLongFormPage(activeSub) {
       const container = document.getElementById('portfolio-content');
       container.innerHTML = "";
+
       const backBtn = document.createElement("button");
       backBtn.className = "tab-button";
       backBtn.textContent = "back";
-      backBtn.onclick = function() { window.location.hash = "#!portfolio"; };
+      backBtn.onclick = function() {
+        window.location.hash = "#!portfolio";
+      };
       container.appendChild(backBtn);
+
       const subNavDiv = document.createElement("div");
       subNavDiv.className = "aero-tabs";
       const subPages = [
@@ -339,13 +391,19 @@
         const button = document.createElement("button");
         button.className = "tab-button";
         button.textContent = sp.label.toLowerCase();
-        if (sp.token === activeSub) { button.classList.add("active"); }
-        button.onclick = function() { window.location.hash = "#!portfolio/" + sp.token; };
+        if (sp.token === activeSub) {
+          button.classList.add("active");
+        }
+        button.onclick = function() {
+          window.location.hash = "#!portfolio/" + sp.token;
+        };
         subNavDiv.appendChild(button);
       });
       container.appendChild(subNavDiv);
+
       const embedDiv = document.createElement("div");
       embedDiv.className = "inner-panel";
+
       if (activeSub === "agamatsu") {
         embedDiv.innerHTML = `
           <div class="embed-container">
@@ -383,16 +441,22 @@
     function renderPortfolioPage(pageToken, pageLabel) {
       const container = document.getElementById('portfolio-content');
       container.innerHTML = "";
+
       const backBtn = document.createElement("button");
       backBtn.className = "tab-button";
       backBtn.textContent = "back";
-      backBtn.onclick = function() { window.location.hash = "#!portfolio"; };
+      backBtn.onclick = function() {
+        window.location.hash = "#!portfolio";
+      };
       container.appendChild(backBtn);
+
       const heading = document.createElement("h3");
       heading.textContent = pageLabel.toLowerCase();
       container.appendChild(heading);
+
       const embedDiv = document.createElement("div");
       embedDiv.className = "inner-panel";
+
       if (pageToken === "short-form") {
         embedDiv.innerHTML = `
           <div class="embed-container">
@@ -481,7 +545,7 @@
                 <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7343425665963772674?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
               </section>
             </blockquote>
-            <!-- YouTube Embed -->
+            <!-- YouTube Embed for Short-form Highlights -->
             <iframe width="315" height="560"
               src="https://www.youtube.com/embed/BSpxORRvl9k"
               title="YouTube video player"
@@ -499,7 +563,7 @@
         embedDiv.innerHTML = `
           <div class="embed-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/Fwza4adbSDE?si=m8J32WFvUdBT5_H2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fwza4adbSDE?si=m8J32WFvUdBT5_H2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/iK99anrvVuY?si=tkG944v-nmtiwP-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/wN7Eo9VBaAM?si=4zUSlTvJrCuM65J1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/nJUG5jGCyRw?si=tX8Rtg25D1d0gWaT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/5-fik6sC7sI?si=Dqp2ztIJ3EoAcelD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -516,11 +580,14 @@
     function loadPortfolio() {
       let fullHash = window.location.hash.replace('#!', '');
       const parts = fullHash.split('/');
+      
       if (parts.length === 1 || parts[1] === "") {
         renderPortfolioMainMenu();
         return;
       }
+
       const subRoute = parts[1];
+
       const longFormSubs = ["agamatsu", "main-channel", "miscellaneous"];
       if (subRoute === "long-form" || longFormSubs.includes(subRoute)) {
         const activeSub = (subRoute === "long-form") ? "agamatsu" : subRoute;
