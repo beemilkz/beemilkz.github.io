@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <script>
+        // Handle redirects from 404.html
         (function(){
             if(sessionStorage.redirect) {
                 const redirect = sessionStorage.redirect;
@@ -29,6 +30,7 @@
             background-size: cover;
             font-family: Verdana, sans-serif;
             color: #002D40;
+            padding: 20px;
         }
 
         h1, h2, h3 {
@@ -45,8 +47,18 @@
             border-radius: 8px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             padding: 25px;
-            margin: 20px;
+            margin-bottom: 20px;
             max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .inner-panel {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--win-border);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
         }
 
         .aero-tabs {
@@ -61,11 +73,14 @@
             position: sticky;
             top: 0;
             backdrop-filter: blur(5px);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .tab-button {
             padding: 12px 25px;
-            border: 1px solid #94E0FF;
+            border: 1px solid var(--win-border);
             border-radius: 4px;
             background: linear-gradient(to bottom, 
                 rgba(255,255,255,0.6) 0%, 
@@ -83,8 +98,21 @@
         }
 
         .tab-button.active {
-            border-color: var(--active-glow) !important;
+            border-color: var(--active-glow);
             box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .hidden {
+            display: none !important;
         }
 
         strong {
@@ -104,8 +132,18 @@
             text-decoration: underline;
         }
 
-        .hidden {
-            display: none;
+        .rates-table {
+            width: 100%;
+            border-spacing: 0;
+            margin: 10px 0;
+        }
+
+        .rates-table td {
+            padding: 8px 0;
+        }
+
+        .rates-table td:first-child {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -121,7 +159,7 @@
         <h1>hello, i'm bee</h1>
         <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy">friend's Discord server</a>, where you can commission me and others.</p>
         
-        <div class="glass-panel" style="margin-top:20px;background:rgba(255,236,179,0.3);">
+        <div class="inner-panel">
             <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time-consuming or complex styles <strong><u>may</u></strong> cost more.</p>
         </div>
     </div>
@@ -134,37 +172,73 @@
         <p>Video editing</p>
 
         <h3>payment</h3>
-        <div class="glass-panel" style="margin:15px 0;padding:15px;">
-            <p>What payment methods do I accept?<br>
-            <strong><u>PayPal and Wise</u></strong></p>
+        <div class="inner-panel">
+            <p>Paypal and Wise</p>
         </div>
 
         <h3>rates</h3>
-        <div class="glass-panel" style="margin:15px 0;padding:15px;">
-            <p>Short-form video = $3<br>
-            1 - 15 minute video = $15<br>
-            15+ minute video = $30<br>
-            Well-edited video = +$5</p>
+        <div class="inner-panel">
+            <table class="rates-table">
+                <tr><td>Short-form video</td><td>$3</td></tr>
+                <tr><td>1 - 15 minute video</td><td>$15</td></tr>
+                <tr><td>15+ minute video</td><td>$30</td></tr>
+                <tr><td>Well-edited video</td><td>+$5</td></tr>
+            </table>
         </div>
 
         <h3>faq</h3>
-        <div class="glass-panel" style="margin:15px 0;padding:15px;">
-            <p><strong>What do you edit with?</strong> Premiere Pro</p>
-            <p><strong>How experienced are you?</strong> I’ve been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</p>
-            <p><strong>Is your pricing negotiable?</strong> Yes, prices fluctuate based on what you want</p>
-            <p><strong>Do you make short-form content?</strong> Yes, all kinds</p>
-            <p><strong>How long does it take you to edit a video?</strong> It depends on the complexity and length of the video. Short-form videos can take anywhere from a couple of hours to a day, while longer or heavily edited projects may take a few days to a week.</p>
-            <p><strong>Do you offer revisions?</strong> Yes, I will revise your video until you are happy :-)</p>
-            <p><strong>What's the difference between a standard edit and a well-edited video?</strong> A standard edit is <a href="https://www.youtube.com/watch?v=Fwza4adbSDE" target="_blank">this</a>, while a well-edited video is <a href="https://www.youtube.com/watch?v=U1W4uF_HINU" target="_blank">this</a> or <a href="https://www.youtube.com/watch?v=5-fik6sC7sI" target="_blank">this</a>.</p>
-            <p><strong>How do you handle music in videos?</strong> I can either use royalty-free music or music provided by you. If you're looking for something specific, just let me know, and we can work it in.</p>
-            <p><strong>Did your house really get destroyed by Hurricane Milton?</strong> No</p>
+        <div class="inner-panel">
+            <div class="faq-item">
+                <div class="faq-question">What do you edit with?</div>
+                <div class="faq-answer">Premiere Pro</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How experienced are you?</div>
+                <div class="faq-answer">I've been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is your pricing negotiable?</div>
+                <div class="faq-answer">Yes, prices fluctuate based on what you want</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do you make short-form content?</div>
+                <div class="faq-answer">Yes, all kinds</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How long does it take you to edit a video?</div>
+                <div class="faq-answer">It depends on the complexity and length of the video. Short-form videos can take anywhere from a couple of hours to a day, while longer or heavily edited projects may take a few days to a week.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do you offer revisions?</div>
+                <div class="faq-answer">Yes, I will revise your video until you are happy :-)</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">What's the difference between a standard edit and a well-edited video?</div>
+                <div class="faq-answer">A <a href="https://www.youtube.com/watch?v=Fwza4adbSDE">standard edit</a> is this, while a well-edited video is <a href="https://www.youtube.com/watch?v=U1W4uF_HINU">this</a> or <a href="https://www.youtube.com/watch?v=5-fik6sC7sI">this</a>.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do you handle music in videos?</div>
+                <div class="faq-answer">I can either use royalty-free music or music provided by you. If you're looking for something specific, just let me know, and we can work it in.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Did your house really get destroyed by Hurricane Milton?</div>
+                <div class="faq-answer">No</div>
+            </div>
         </div>
     </div>
 
     <!-- Portfolio Tab -->
     <div id="portfolio" class="glass-panel hidden">
         <h2>editing portfolio</h2>
-        <div class="glass-panel" style="margin:15px 0;padding:15px;text-align:center;">
+        <div class="inner-panel" style="text-align:center;">
             <p>portfolio coming soon<br>
             (check back later)</p>
         </div>
@@ -172,39 +246,58 @@
 
     <script>
         function showTab(tabId) {
+            // Hide all panels
+            document.querySelectorAll('.glass-panel').forEach(panel => {
+                if (panel.id) {  // Only hide panels with IDs (tab content)
+                    panel.classList.add('hidden');
+                }
+            });
+            
+            // Show selected panel
+            const selectedPanel = document.getElementById(tabId);
+            if (selectedPanel) {
+                selectedPanel.classList.remove('hidden');
+            }
+
             // Update active button
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.currentTarget.classList.add('active');
             
-            // Update title
+            // Update title and URL
             document.title = `${tabId} - beemilkz's website`;
-
-            // Update content visibility
-            document.querySelectorAll('.glass-panel').forEach(panel => {
-                panel.classList.add('hidden');
-            });
-            document.getElementById(tabId).classList.remove('hidden');
-
-            // Update URL
             window.location.hash = `#!${tabId}`;
         }
 
         // Handle initial load
         function loadTab() {
-            const tabId = window.location.hash.replace('#!', '') || 'welcome';
+            const hash = window.location.hash.replace('#!', '');
+            const tabId = hash || 'welcome';
+            
+            // Hide all panels
+            document.querySelectorAll('.glass-panel').forEach(panel => {
+                if (panel.id) {
+                    panel.classList.add('hidden');
+                }
+            });
+            
+            // Show selected panel
+            const selectedPanel = document.getElementById(tabId);
+            if (selectedPanel) {
+                selectedPanel.classList.remove('hidden');
+            }
+
+            // Update active button
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
+                if (btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
             });
-            const activeBtn = document.querySelector(`[onclick="showTab('${tabId}')"]`);
-            if(activeBtn) activeBtn.classList.add('active');
+
+            // Update title
             document.title = `${tabId} - beemilkz's website`;
-            document.querySelectorAll('.glass-panel').forEach(panel => {
-                panel.classList.add('hidden');
-            });
-            const activePanel = document.getElementById(tabId);
-            if(activePanel) activePanel.classList.remove('hidden');
         }
 
         window.addEventListener('hashchange', loadTab);
