@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    // Handle redirects from 404.html
+    (function(){
+      if(sessionStorage.redirect) {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        window.location.hash = redirect;
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beemilkz's website</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta property="og:title" content="beemilkz - commissions" />
+<meta property="og:description" content="Versatile video editor with 6 years of experience." />
+<meta property="og:url" content="https://beemilkz.github.io/" />
+<meta property="og:image" content="https://beemilkz.github.io/assets/collage.jpg" />
+<meta property="og:type" content="website" />
+  <style>
+    :root {
+      --aero-blue: #7FD8FF;
+      --vista-glass: rgba(255, 255, 255, 0.3);
+      --win-border: #94E0FF;
+      --active-glow: #4CAF50;
+    }
+
+    body, html {
+      height: 100%;
+      margin: 0;
+      background: url('assets/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Segoe UI, sans-serif;
+      color: #002D40;
+      padding: 20px;
+    }
+
+    h1, h2, h3 {
+      font-family: Helvetica, sans-serif;
+      font-weight: bold;
+      margin: 0 0 15px 0;
+      text-transform: lowercase;
+    }
+
+    .glass-panel {
+      background: var(--vista-glass);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--win-border);
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .inner-panel {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--win-border);
+      border-radius: 6px;
+      padding: 15px;
+      margin: 15px 0;
+    }
+
+    .aero-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 15px;
+      background: linear-gradient(to bottom, 
+        rgba(255,255,255,0.4) 0%, 
+        rgba(255,255,255,0.2) 100%);
+      border-radius: 6px;
+      margin-bottom: 20px;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(5px);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tab-button {
+      padding: 12px 25px;
+      border: 1px solid var(--win-border);
+      border-radius: 4px;
+      background: linear-gradient(to bottom, 
+        rgba(255,255,255,0.6) 0%, 
+        rgba(255,255,255,0.3) 100%);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: Helvetica, sans-serif;
+      color: #003366;
+      text-transform: lowercase;
+    }
+
+    .tab-button:hover {
+      text-decoration: underline;
+      transform: translateY(-2px);
+    }
+
+    .tab-button.active {
+      border-color: var(--active-glow);
+      box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+    }
+
+    .faq-item {
+      margin-bottom: 15px;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    u {
+      text-decoration: underline;
+    }
+
+    a {
+      color: #2196F3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .rates-table {
+      width: 100%;
+      border-spacing: 0;
+      margin: 10px 0;
+    }
+
+    .rates-table td {
+      padding: 8px 0;
+    }
+
+    .rates-table td:first-child {
+      font-weight: bold;
+    }
+
+    /* Embed container for centering & mobile responsiveness */
+    .embed-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .embed-container iframe,
+    .embed-container blockquote {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+    /* Ensure TikTok embeds don't overflow on mobile */
+    @media (max-width: 600px) {
+      .embed-container blockquote.tiktok-embed {
+        max-width: 100% !important;
+        min-width: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="aero-tabs">
+    <button class="tab-button" onclick="showTab(event, 'welcome')">welcome</button>
+    <button class="tab-button" onclick="showTab(event, 'commission')">commission</button>
+    <button class="tab-button" onclick="showTab(event, 'portfolio')">portfolio</button>
+  </nav>
+
+  <!-- Welcome Tab -->
+  <div id="welcome" class="glass-panel">
+    <h1>hello, i'm bee</h1>
+    <p>I've been editing for <strong>almost six years</strong>. I use <strong>Premiere Pro</strong>, and I'm available <strong>24/7</strong> (as long as I'm not busy with IRL or homework). Feel free to commission me by adding me on Discord <strong>@beemilkz</strong> or join my <a href="http://discord.gg/vRRCMH3KGy" target="_blank">friend's Discord server</a>, where you can commission me and others.</p>
+    
+    <div class="inner-panel">
+      <p>My editing style is <strong>versatile</strong> and can be <strong>tailored</strong> to whatever you want/need. More time‑consuming or complex styles <strong><u>may</u></strong> cost more.</p>
+    </div>
+  </div>
+
+<!-- Commission Tab -->
+<div id="commission" class="glass-panel hidden">
+  <h2>commission information</h2>
+  
+  <h3>what do you offer?</h3>
+  <p>Video editing</p>
+
+  <h3>payment</h3>
+  <div class="inner-panel">
+    <p>Paypal, Wise, BTC, and Kofi</p>
+  </div>
+
+  <h3>rates</h3>
+  <div class="inner-panel">
+    <p>My standard rates are <strong>$1.50 per minute</strong> of the length of the video.</p>
+    <p>The base cost of each project is <strong>$10</strong>.</p>
+    <p><strong>Pricing formula:</strong><br>
+    $10 + ($1.50 × Length in minutes)</p>
+    <p><strong>Examples:</strong><br>
+    $10 + ($1.50 × 10 minutes) = <strong>$25</strong><br>
+    $10 + ($1.50 × 30 minutes) = <strong>$55</strong></p>
+  </div>
+
+  <h3>faq</h3>
+  <div class="inner-panel">
+    <div class="faq-item">
+      <div class="faq-question">What do you edit with?</div>
+      <div class="faq-answer">Premiere Pro</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How experienced are you?</div>
+      <div class="faq-answer">I've been editing for 5 years, almost 6. I started taking it seriously at the start of 2024 when I began editing for Agamatsu.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Is your pricing negotiable?</div>
+      <div class="faq-answer">Yes, prices fluctuate based on what you want</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you make short‑form content?</div>
+      <div class="faq-answer">Yes, all kinds</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">How long does it take you to edit a video?</div>
+      <div class="faq-answer">It depends on the complexity and length of the video. Short‑form videos can take anywhere from a couple of hours to a day, while longer or heavily edited projects may take a few days to a week.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Do you offer revisions?</div>
+      <div class="faq-answer">Yes, I will revise your video until you are happy :-)</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">What's the difference between a standard edit and a well‑edited video?</div>
+      <div class="faq-answer">
+        A standard edit is <a href="https://www.youtube.com/watch?v=Fwza4adbSDE" target="_blank">this</a>, while a well‑edited video is <a href="https://www.youtube.com/watch?v=U1W4uF_HINU" target="_blank">this</a>
+ or <a href="https://www.youtube.com/watch?v=5-fik6sC7sI" target="_blank">this</a>.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">Did your house really get destroyed by Hurricane Milton?</div>
+      <div class="faq-answer">No</div>
+    </div>
+  </div>
+</div>
+
+  <!-- Portfolio Tab -->
+  <div id="portfolio" class="glass-panel hidden">
+    <h2>editing portfolio</h2>
+    <div id="portfolio-content"></div>
+  </div>
+
+  <script>
+    // -------------------------
+    // Tab Switching Code
+    // -------------------------
+    function showTab(event, tabName) {
+      document.querySelectorAll('.glass-panel').forEach(panel => {
+        if(panel.id) {
+          panel.classList.add('hidden');
+        }
+      });
+      
+      const selectedPanel = document.getElementById(tabName);
+      if (selectedPanel) {
+        selectedPanel.classList.remove('hidden');
+      }
+
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+      
+      document.title = `${tabName} - beemilkz's website`;
+      window.location.hash = `#!${tabName}`;
+      
+      if(tabName === "portfolio") {
+        loadPortfolio();
+      }
+    }
+
+    // -------------------------
+    // Initial Load Handler
+    // -------------------------
+    function loadTab() {
+      let hash = window.location.hash.replace('#!', '');
+      let tabId = hash;
+      if(tabId.startsWith("portfolio")) {
+        tabId = "portfolio";
+      } else if(tabId === "") {
+        tabId = "welcome";
+      }
+      
+      document.querySelectorAll('.glass-panel').forEach(panel => {
+        if (panel.id) {
+          panel.classList.add('hidden');
+        }
+      });
+      
+      const selectedPanel = document.getElementById(tabId);
+      if (selectedPanel) {
+        selectedPanel.classList.remove('hidden');
+      }
+
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
+          btn.classList.add('active');
+        }
+      });
+
+      document.title = `${tabId} - beemilkz's website`;
+
+      if(tabId === "portfolio") {
+        loadPortfolio();
+      }
+    }
+
+    window.addEventListener('hashchange', loadTab);
+    window.addEventListener('load', loadTab);
+
+    // -------------------------
+    // Portfolio Page Functions
+    // -------------------------
+    function renderPortfolioMainMenu() {
+      const container = document.getElementById('portfolio-content');
+      container.innerHTML = "";
+
+      const menuDiv = document.createElement("div");
+      menuDiv.className = "aero-tabs";
+
+      const buttons = [
+        { token: "long-form", label: "Long-form Videos" },
+        { token: "short-form", label: "Short-form Videos" },
+        { token: "short-form-highlights", label: "Short-form Highlights" },
+        { token: "long-form-highlights", label: "Long-form Highlights" },
+        { token: "most-viewed-long-form", label: "Most Viewed Long-form" },
+        { token: "most-viewed-short-form", label: "Most Viewed Short-form" }
+      ];
+
+      buttons.forEach(btn => {
+        const button = document.createElement("button");
+        button.className = "tab-button";
+        button.textContent = btn.label.toLowerCase();
+        button.onclick = function() {
+          window.location.hash = "#!portfolio/" + btn.token;
+        };
+        menuDiv.appendChild(button);
+      });
+      container.appendChild(menuDiv);
+
+      const message = document.createElement("div");
+      message.innerHTML = "<p>Select a portfolio category above.</p>";
+      container.appendChild(message);
+    }
+
+    function renderLongFormPage(activeSub) {
+      const container = document.getElementById('portfolio-content');
+      container.innerHTML = "";
+
+      const backBtn = document.createElement("button");
+      backBtn.className = "tab-button";
+      backBtn.textContent = "back";
+      backBtn.onclick = function() {
+        window.location.hash = "#!portfolio";
+      };
+      container.appendChild(backBtn);
+
+      const subNavDiv = document.createElement("div");
+      subNavDiv.className = "aero-tabs";
+      const subPages = [
+        { token: "agamatsu", label: "Agamatsu" },
+        { token: "main-channel", label: "Main Channel" },
+        { token: "miscellaneous", label: "Miscellaneous" }
+      ];
+      subPages.forEach(sp => {
+        const button = document.createElement("button");
+        button.className = "tab-button";
+        button.textContent = sp.label.toLowerCase();
+        if (sp.token === activeSub) {
+          button.classList.add("active");
+        }
+        button.onclick = function() {
+          window.location.hash = "#!portfolio/" + sp.token;
+        };
+        subNavDiv.appendChild(button);
+      });
+      container.appendChild(subNavDiv);
+
+      const embedDiv = document.createElement("div");
+      embedDiv.className = "inner-panel";
+
+      if (activeSub === "agamatsu") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fwza4adbSDE?si=oqopQI8ux8eGNoji" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/X1SHAuDIFGM?si=3XXzQ-a2K0-SREsa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/vCutAZ1iGk4?si=Des_Np1vWa7WmGai" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/1JNCtdiFLDg?si=zmwJBesihCxtO1Md" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/iK99anrvVuY?si=zSeSmtFUkWyq9u4p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/wN7Eo9VBaAM?si=n8eS-sjFmQrXKf3v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/S_rEf2qA_l0?si=Py7HdbC17vr8ibX2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        `;
+      } else if (activeSub === "main-channel") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5-fik6sC7sI?si=eCn6Av0QoL0m4nvx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/U1W4uF_HINU?si=7Yko53D9pVPIfKrf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/icPPXlQPCNk?si=eI1qyn_5RuibnNVy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/qq5vnp_5f-A?si=a9NMJFklfpWCvCtO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/kdSjZSZ2Ly4?si=yIgecniqANpWIafE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/upApoQcIpBE?si=5zT3emEIxgJlh24o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        `;
+      } else if (activeSub === "miscellaneous") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/5_Ogd9uZtkY?si=n2VKBeCcWyo96s4V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/sD8CfbnA7qg?si=P_4xwgj4VfOeYxmq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/XYTf5bR7Sgs?si=3E3xG8Sd7gRxzZb2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/nJUG5jGCyRw?si=CekyxQ0r2vJBg5kZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/pYEYG1p97c4?si=CekyxQ0r2vJBg5kZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/61OVrasCUtk?si=CekyxQ0r2vJBg5kZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        `;
+      } else {
+        embedDiv.innerHTML = `<p>No content available for this section.</p>`;
+      }
+      container.appendChild(embedDiv);
+    }
+
+    function renderPortfolioPage(pageToken, pageLabel) {
+      const container = document.getElementById('portfolio-content');
+      container.innerHTML = "";
+
+      const backBtn = document.createElement("button");
+      backBtn.className = "tab-button";
+      backBtn.textContent = "back";
+      backBtn.onclick = function() {
+        window.location.hash = "#!portfolio";
+      };
+      container.appendChild(backBtn);
+
+      const heading = document.createElement("h3");
+      heading.textContent = pageLabel.toLowerCase();
+      container.appendChild(heading);
+
+      const embedDiv = document.createElement("div");
+      embedDiv.className = "inner-panel";
+
+      if (pageToken === "short-form") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial" data-unique-id="agamatsuofficial" data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
+              <section>
+                <a target="_blank" href="https://www.tiktok.com/@agamatsuofficial?refer=creator_embed">@agamatsuofficial</a>
+              </section>
+            </blockquote>
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/BSpxORRvl9k"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/1sOz2POJhPU"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/1wfJxvhymjg"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/cZvxLiCONYo"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/4gBV3pDbwjI"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        `;
+        var tiktokScript = document.createElement("script");
+        tiktokScript.src = "https://www.tiktok.com/embed.js";
+        tiktokScript.async = true;
+        embedDiv.appendChild(tiktokScript);
+      }
+      else if (pageToken === "short-form-highlights") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <!-- TikTok Highlight 1 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7459894059948068104" data-video-id="7459894059948068104" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>CHAT ITS NEVER WORTH IT. LOVE YOURSELF. roblox robloxfyp deepwokentiktok deepwoken</p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7459894178290699009?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 2 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7426200257903496456" data-video-id="7426200257903496456" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>The HEALER BUILD Is Crazy... <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="robloxfyp" target="_blank" href="https://www.tiktok.com/tag/robloxfyp?refer=embed">#robloxfyp</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="robloxtiktok" target="_blank" href="https://www.tiktok.com/tag/robloxtiktok?refer=embed">#robloxtiktok</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7426200344868178704?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 3 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7475893661939780871" data-video-id="7475893661939780871" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>old layer 2 had unc tweaking😭😭😭 <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="deepwokentiktok" target="_blank" href="https://www.tiktok.com/tag/deepwokentiktok?refer=embed">#deepwokentiktok</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7475893661939780871?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 4 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7473582191314750728" data-video-id="7473582191314750728" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>AGAMATSU CRASHES OUT COMPLETELY😭😭😭 <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="deepwokentiktok" target="_blank" href="https://www.tiktok.com/tag/deepwokentiktok?refer=embed">#deepwokentiktok</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7473582191314750728?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- TikTok Highlight 5 -->
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7459894058861874439" data-video-id="7459894058861874439" data-embed-from="oembed" style="max-width:605px; min-width:325px;">
+              <section>
+                <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a>
+                <p>bro leaked it... <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="roguelineage" target="_blank" href="https://www.tiktok.com/tag/roguelineage?refer=embed">#roguelineage</a></p>
+                <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7459894058861874439?refer=embed">♬ original sound - Agamatsu - Agamatsu</a>
+              </section>
+            </blockquote>
+            <!-- YouTube Embed for Short-form Highlights -->
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/BSpxORRvl9k"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        `;
+        var tiktokScript = document.createElement("script");
+        tiktokScript.src = "https://www.tiktok.com/embed.js";
+        tiktokScript.async = true;
+        embedDiv.appendChild(tiktokScript);
+      }
+      else if (pageToken === "long-form-highlights") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fwza4adbSDE?si=m8J32WFvUdBT5_H2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/iK99anrvVuY?si=tkG944v-nmtiwP-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/wN7Eo9VBaAM?si=4zUSlTvJrCuM65J1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/nJUG5jGCyRw?si=tX8Rtg25D1d0gWaT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5-fik6sC7sI?si=Dqp2ztIJ3EoAcelD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/U1W4uF_HINU?si=LdJNYM1nlp20Ecnf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        `;
+      }
+      else if (pageToken === "most-viewed-long-form") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/kdSjZSZ2Ly4?si=W95N8NRcT1CXmss8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/5-fik6sC7sI?si=IVWx9BprNBx36DT1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fwza4adbSDE?si=vcddKjwKo44sunX_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/upApoQcIpBE?si=InYb-57kIRe29kpM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/wN7Eo9VBaAM?si=UiOdCxZupUfuq_PE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/iK99anrvVuY?si=yIRt95RQzZUuN70O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/X1SHAuDIFGM?si=CJikVHSdg2KCUG1b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/S_rEf2qA_l0?si=Sji3u2G1DSHHIpl1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/1JNCtdiFLDg?si=hB6kNtN9YAo0p0jq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/vCutAZ1iGk4?si=0boEvOIf0orPSoTW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        `;
+      }
+      else if (pageToken === "most-viewed-short-form") {
+        embedDiv.innerHTML = `
+          <div class="embed-container">
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7459894059948068104" data-video-id="7459894059948068104" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>CHAT ITS NEVER WORTH IT. LOVE YOURSELF. roblox robloxfyp deepwokentiktok deepwoken</p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7459894178290699009?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7464938701626428680" data-video-id="7464938701626428680" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>THE OG LAYER 2 BELL CLIP... deepwoken roblox robloxfyp robloxtiktok</p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7464938769557261057?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7459894058861874439" data-video-id="7459894058861874439" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>bro leaked it... deepwoken roblox robloxfyp robloxtiktok</p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7459894169625201425?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7346638008835263765" data-video-id="7346638008835263765" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>Conquest LEAK?!? <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="deepwokentiktok" target="_blank" href="https://www.tiktok.com/tag/deepwokentiktok?refer=embed">#deepwokentiktok</a></p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7346638509572147970?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7418244901155966226" data-video-id="7418244901155966226" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>Is EVERYONE cooked? <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="robloxfyp" target="_blank" href="https://www.tiktok.com/tag/robloxfyp?refer=embed">#robloxfyp</a></p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7418244959737858833?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7381257351090687248" data-video-id="7381257351090687248" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>the toughest question in deepwoken... <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="robloxfyp" target="_blank" href="https://www.tiktok.com/tag/robloxfyp?refer=embed">#robloxfyp</a></p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7381257725067430672?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7430173454411812114" data-video-id="7430173454411812114" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>DEEPWOKEN IN GEOMETRY DASH? <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="robloxfyp" target="_blank" href="https://www.tiktok.com/tag/robloxfyp?refer=embed">#robloxfyp</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="robloxtiktok" target="_blank" href="https://www.tiktok.com/tag/robloxtiktok?refer=embed">#robloxtiktok</a></p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7430173550268402433?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7464938705250192647" data-video-id="7464938705250192647" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>YOUNGAMATSU WAS ALWAYS AT IT deepwoken roblox robloxfyp robloxtiktok</p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7464938761219427073?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7411276511077993744" data-video-id="7411276511077993744" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>Sagee4 is NOT getting unbanned 💀😭 <a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="deepwokenroblox" target="_blank" href="https://www.tiktok.com/tag/deepwokenroblox?refer=embed">#deepwokenroblox</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a> <a title="robloxfyp" target="_blank" href="https://www.tiktok.com/tag/robloxfyp?refer=embed">#robloxfyp</a> <a title="typesoul" target="_blank" href="https://www.tiktok.com/tag/typesoul?refer=embed">#typesoul</a> <a title="typesoulroblox" target="_blank" href="https://www.tiktok.com/tag/typesoulroblox?refer=embed">#typesoulroblox</a></p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7411276566468053776?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agamatsuofficial/video/7431345008583675154" data-video-id="7431345008583675154" data-embed-from="embed_page" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@agamatsuofficial" href="https://www.tiktok.com/@agamatsuofficial?refer=embed">@agamatsuofficial</a> <p>Verse 1 Deepwoken hits different<a title="deepwoken" target="_blank" href="https://www.tiktok.com/tag/deepwoken?refer=embed">#deepwoken</a> <a title="roblox" target="_blank" href="https://www.tiktok.com/tag/roblox?refer=embed">#roblox</a> <a title="robloxfyp" target="_blank" href="https://www.tiktok.com/tag/robloxfyp?refer=embed">#robloxfyp</a> <a title="robloxtiktok" target="_blank" href="https://www.tiktok.com/tag/robloxtiktok?refer=embed">#robloxtiktok</a> <a title="fyp" target="_blank" href="https://www.tiktok.com/tag/fyp?refer=embed">#fyp</a></p> <a target="_blank" title="♬ original sound - Agamatsu - Agamatsu" href="https://www.tiktok.com/music/original-sound-Agamatsu-7431345086329260816?refer=embed">♬ original sound - Agamatsu - Agamatsu</a> </section> </blockquote>
+          </div>
+        `;
+        var tiktokScript = document.createElement("script");
+        tiktokScript.src = "https://www.tiktok.com/embed.js";
+        tiktokScript.async = true;
+        embedDiv.appendChild(tiktokScript);
+      }
+      else {
+        embedDiv.innerHTML = `<p>Insert YouTube embeds for <strong>${pageLabel}</strong> here.</p>`;
+      }
+      container.appendChild(embedDiv);
+    }
+
+    function loadPortfolio() {
+      let fullHash = window.location.hash.replace('#!', '');
+      const parts = fullHash.split('/');
+      
+      if (parts.length === 1 || parts[1] === "") {
+        renderPortfolioMainMenu();
+        return;
+      }
+
+      const subRoute = parts[1];
+
+      const longFormSubs = ["agamatsu", "main-channel", "miscellaneous"];
+      if (subRoute === "long-form" || longFormSubs.includes(subRoute)) {
+        const activeSub = (subRoute === "long-form") ? "agamatsu" : subRoute;
+        renderLongFormPage(activeSub);
+      }
+      else if (subRoute === "short-form" || subRoute === "short-form-highlights" || subRoute === "long-form-highlights" || subRoute === "most-viewed-long-form" || subRoute === "most-viewed-short-form") {
+        const mapping = {
+          "short-form": "Short-form Videos",
+          "short-form-highlights": "Short-form Highlights",
+          "long-form-highlights": "Long-form Highlights",
+          "most-viewed-long-form": "Most Viewed Long-form",
+          "most-viewed-short-form": "Most Viewed Short-form"
+        };
+        renderPortfolioPage(subRoute, mapping[subRoute]);
+      }
+      else {
+        renderPortfolioMainMenu();
+      }
+    }
+  </script>
+</body>
+</html>
